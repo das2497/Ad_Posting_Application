@@ -90,7 +90,7 @@
 
 <body>
 
-    <?php require 'header_admin.php'; ?>
+    <?php require 'header_n_admin.php'; ?>
 
     <div class="py-2"></div>
 
@@ -140,13 +140,16 @@
 
 
                     <?php
-                    for ($x = 0; $x < 20; $x++) {
+                    require 'connection.php';
 
+                    $rs = Database::search("SELECT * FROM ad_user;");
+                    for ($x = 0; $x < $rs->num_rows; $x++) {
+                        $d = $rs->fetch_assoc();
                     ?>
-                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_user_prof();">
+                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_user_prof(<?php echo $d['ausr_id']; ?>);">
                             <div class="col-12">
-                                <h4><?php echo mb_substr("User Name", 0, 20, 'UTF-8'); ?></h4>
-                                <h4><?php echo mb_substr("Mobile Number", 0, 20, 'UTF-8'); ?></h4>
+                                <h4><?php echo mb_substr($d['ausr_uname'], 0, 20, 'UTF-8'); ?></h4>
+                                <h4><?php echo mb_substr($d['ausr_contact'], 0, 20, 'UTF-8'); ?></h4>
                             </div>
                         </div>
 

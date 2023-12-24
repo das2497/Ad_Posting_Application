@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en">
 
 <head>
@@ -36,7 +29,20 @@
 
 <body>
 
-    <?php require 'header.php'; ?>
+    <?php
+    require 'header_n_admin.php';
+
+    require 'connection.php';
+
+    $rs = Database::search("SELECT *
+    FROM ad_ad
+    INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+    INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+    INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+    WHERE ad_ad.ad_id='" . $_GET['ad_id'] . "';");
+
+    $d = $rs->fetch_assoc();
+    ?>
 
 
     <section class="mt-4">
@@ -46,11 +52,11 @@
                     <div class="login">
 
                         <h3 class="">User Settings</h3>
-                        <form action="#" class="login-form row">
+                        <div class="login-form row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="loginemail">Selsect Badge</label>
-                                    <select class="form-select">
+                                    <label for="usr_badge">Selsect Badge</label>
+                                    <select class="form-select" id="usr_badge">
                                         <option value="1">Normal</option>
                                         <option value="2">Best Ad</option>
                                         <option value="3">VIP</option>
@@ -59,18 +65,118 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="loginPassword">Select Status</label>
-                                    <select class="form-select">
+                                    <label for="usr_stat">Select Status</label>
+                                    <select class="form-select" id="usr_stat">
                                         <option value="1">Online</option>
-                                        <option value="2">Ofline</option>
+                                        <option value="0">Ofline</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <div class="form-group">
+                                    <label for="usr_cashback">CashBack Badge</label>
+                                    <select class="form-select" id="usr_cashback">
+                                        <option value="0">Inactive</option>
+                                        <option value="1">Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" onclick="user_setup(<?= $_GET['ad_id'] ?>);">Update</button>
                                 <a class="btn btn-dark" href="adadmin.php">Go Back</a>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+
+                    <div class="signup">
+                        <div class="signup-form row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <img class="img-fluid m-1" src="<?= $d['ad_img1']; ?>" width="100">
+                                        <?php
+                                        if ($d['ad_img2'] != '') {
+                                        ?>
+                                            <img src="<?= $d['ad_img2']; ?>" class="img-fluid m-1" alt="featured-image">
+                                        <?php
+                                        }
+                                        if ($d['ad_img3'] != '') {
+                                        ?>
+                                            <img src="<?= $d['ad_img3']; ?>" class="img-fluid m-1" alt="featured-image">
+                                        <?php
+                                        }
+                                        if ($d['ad_img4'] != '') {
+                                        ?>
+                                            <img src="<?= $d['ad_img4']; ?>" class="img-fluid m-1" alt="featured-image">
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_img_1">Image 1</label>
+                                    <input type="file" class="form-control" id="ad_img_1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_img_2">Image 2</label>
+                                    <input type="file" class="form-control" id="ad_img_2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_img_3">Image 3</label>
+                                    <input type="file" class="form-control" id="ad_img_3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_img_4">Image 4</label>
+                                    <input type="file" class="form-control" id="ad_img_4">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_title">Title</label>
+                                    <input type="text" class="form-control" id="ad_title" placeholder="Title" value="<?php echo $d['ad_title']; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ad_mobile">Your Mobile Number</label>
+                                    <input type="text" id="ad_mobile" class="form-control" placeholder="Your Mobile Number" value="<?php echo $d['ad_contact']; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="ad_location">Location</label>
+                                    <input type="password" class="form-control" id="ad_location" placeholder="Location" value="<?php echo $d['ad_location']; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad_category">Catogery</label>
+                                <select class="form-select" id="ad_category">
+                                    <option value="x">Select</option>
+                                    <option value="1">Personal</option>
+                                    <option value="1">Spa</option>
+                                    <option value="1">Live Cam</option>
+                                    <option value="1">Hotel</option>
+                                    <option value="1">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="ad_description">Description</label>
+                                    <textarea class="form-control" cols="30" rows="40" placeholder="Description" id="ad_description"><?php echo $d['ad_descrip']; ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <button class="btn btn-primary" onclick="update_ad(<?= $_GET['ad_id'] ?>);">Update Ad</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +197,7 @@
     <script src="plugins/google-map/gmap.js"></script>
     <!-- main js -->
     <script src="js/custom.js"></script>
-
+    <script src="main.js"></script>
 </body>
 
 </html>

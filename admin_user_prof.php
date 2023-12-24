@@ -1,11 +1,6 @@
 <!DOCTYPE html>
+<?php require 'connection.php'; ?>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en">
 
@@ -36,7 +31,7 @@
 
 <body>
 
-    <?php require 'header.php'; ?>
+    <?php require 'header_n_admin.php'; ?>
 
 
     <section class="mt-4">
@@ -45,26 +40,44 @@
                 <div class="col-lg-7">
                     <div class="login">
 
+                        <?php
+                        $rs = Database::search("SELECT * FROM ad_user WHERE ausr_id='" . $_GET['uid'] . "';");
+                        $d = $rs->fetch_assoc();
+                        ?>
+
+
                         <h3 class="">User Settings</h3>
-                        <form action="#" class="login-form row">
-                            <div class="col-md-12">
+                        <div class="login-form row">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="loginemail">Username</label>
-                                    <input class="form-control" type="text" value="Username">
+                                    <label for="rg_uname">Username</label>
+                                    <input type="text" class="form-control" id="up_uname" placeholder="Username" value="<?php echo $d['ausr_uname']; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rg_contact">Mobile Number</label>
+                                    <input type="text" id="up_contact" class="form-control" placeholder="Mobile Number" value="<?php echo $d['ausr_contact']; ?>">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="loginPassword">Mobile Number</label>
-                                    <input class="form-control" type="text" value="Username">                                    
+                                    <label for="rg_age">Age</label>
+                                    <input type="text" class="form-control" id="up_age" placeholder="Age" value="<?php echo $d['ausr_age']; ?>">
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <div class="form-group">
+                                    <label for="rg_pass">Password</label>
+                                    <input type="text" class="form-control" id="up_pass" placeholder="password" value="<?php echo $d['ausr_pass']; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" onclick="admin_usr_updt(<?= $_GET['uid']; ?>);">Update</button>
                                 <a class="btn btn-dark" href="adadmin_users.php">Go Back</a>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -84,7 +97,7 @@
     <script src="plugins/google-map/gmap.js"></script>
     <!-- main js -->
     <script src="js/custom.js"></script>
-
+    <script src="main.js"></script>
 </body>
 
 </html>

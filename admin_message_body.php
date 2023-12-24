@@ -36,7 +36,7 @@
 
 <body>
 
-    <?php require 'header.php'; ?>
+    <?php require 'header_n_admin.php'; ?>
 
 
     <section class="mt-4">
@@ -50,17 +50,23 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="loginemail">Username</label>
-                                    <input class="form-control" type="text" value="Username">
+                                    <input class="form-control" type="text" value="Username" disabled>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="loginPassword">Mobile Number</label>
-                                    <input class="form-control" type="text" value="Username">
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
                             </div>
                             <div class="col-md-12">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-primary" type="submit">Send</button>
                                 <a class="btn btn-dark" href="adadmin_messages.php">Go Back</a>
                             </div>
                         </form>

@@ -1,3 +1,17 @@
+<?php
+session_start();
+require 'connection.php';
+
+$rs = Database::search("SELECT *
+    FROM ad_ad
+    INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+    INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+    INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+    WHERE ad_id='" . $_GET['ad_id'] . "';");
+
+$d = $rs->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 
 <!--
@@ -46,11 +60,28 @@
                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                     <div class="single-post">
                         <div class="post-header mb-5">
-                            <a class="post-category" href="post-category-1.html">Personal</a>
+                            <a class="post-category" href="post-category-1.html"><?= $d['adct_cat']; ?></a>
                         </div>
                         <div class="post-body">
                             <div class="post-featured-image">
-                                <img src="images/ad_photos//ad1.jpg" class="img-fluid" alt="featured-image">
+                                <img src="<?= $d['ad_img1']; ?>" class="img-fluid" alt="featured-image">
+                                <?php
+                                if ($d['ad_img2'] != '') {
+                                ?>
+                                    <img src="<?= $d['ad_img2']; ?>" class="img-fluid mt-1" alt="featured-image">
+                                <?php
+                                }
+                                if ($d['ad_img3'] != '') {
+                                ?>
+                                    <img src="<?= $d['ad_img3']; ?>" class="img-fluid mt-1" alt="featured-image">
+                                <?php
+                                }
+                                if ($d['ad_img4'] != '') {
+                                ?>
+                                    <img src="<?= $d['ad_img4']; ?>" class="img-fluid mt-1" alt="featured-image">
+                                <?php
+                                }
+                                ?>
                             </div>
 
                         </div>
@@ -61,12 +92,12 @@
                     <div class="sidebar sidebar-right">
                         <div class="widget">
                             <h4 class="">
-                                genuine cam service
+                                <?= $d['ad_title']; ?>
                             </h4>
                             <p style="font-size: 12px;">
-                                <span><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Colombo,Kollupitiya</span>
+                                <span><i class="fa fa-map-marker"></i>&nbsp;&nbsp;<?= $d['ad_location']; ?></span>
                                 &nbsp; |&nbsp;
-                                <span>Personal</span>&nbsp;
+                                <span><?= $d['adct_cat']; ?></span>&nbsp;
                                 |&nbsp;
                                 &nbsp;<span><i class="fa fa-clock-o"></i> 13 minutes ago</span>
                             </p>
@@ -77,15 +108,15 @@
                             </p>
 
                             <p>
-                                <button class="btn btn-outline-secondary" onclick="myFunction('0757176697')" id="cpnmbr">Copy Number</button>
+                                <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
                             </p>
                             <p>
-                                <a class="btn btn-outline-success" href="https://wa.me/+94757176697">
+                                <a class="btn btn-outline-success" href="https://wa.me/<?= $d['ausr_contact']; ?>">
                                     <i class="bi bi-whatsapp"></i> Chat On Whatsapp
                                 </a>
                             </p>
                             <p>
-                                <a class="btn btn-outline-primary" href="https://te.me/+94757176697">
+                                <a class="btn btn-outline-primary" href="https://te.me/<?= $d['ausr_contact']; ?>">
                                     <i class="bi bi-send-fill"></i> Chat On Teligram
                                 </a>
                             </p>
@@ -93,87 +124,21 @@
 
                         <div class="widget">
                             <div class="post-list-block">
-                                <p class="wm">
+                                <?php
+                                if ($d['ad_badge_adbg_id'] == 3) {
+                                ?>
+                                    <p class="wm">
                                     <?php
-                                    $string = "Post AD
-                                   2 weeks ago
-                                  lanka ads image
-                                  Photo Verified ✅
-                                  💃Genuine Cam Service 💟 Cute♥ Verified ✅
-                                   All Locations
-                                  |
-                                  Live Cam
-                                   7.5k likes
-                                   0757176697
-                                   Like
-                                   Save Share
-                                  Tell me you found me on BestAddLk.club & get a special Discount 
-                                  ඔබ මා සොයාගත්තෙ BestAddLk .club වෙබ් අඩවියෙන් බව පවසා සුවිශෙෂි මිල අඩුකිරීම් ලබා ගන්න.
-                                   Call (0757176697)
-                                   Chat on Whatsapp
-                                  🩷Im Sakuni
-                                  💜22 years Old
-                                  💜Live cam model
-                                  🩷💯Real photo attached ✔
-                                  
-                                  🔐Video Verification : 500/= 💰
-                                  
-                                  ⛔This Service 21+ years Old plus person only
-                                  
-                                  ❌මෙම සේවාව ලබා දෙනු ලබන්නේ වයස 21 වැඩි පුද්ගලයන්ට පමණි. වයස තහවුරු කල පසු සේවාව ලබා ගත හැක.❌
-                                  
-                                  (ඔබගේ වයසේ අනන්‍යතාව තහවුරු කිරීමට කාරුණික වන්න)
-                                  
-                                  🩷I’m attached my real photograph 📸 ❤My apartment at Rajagiriya . Clam and hidden Parking 
-                                  
-                                  If you wanna verification Pay Rs 500/-
-                                  verification fee is Deduct your choosing package
-                                  
-                                  Cam price details
-                                  
-                                  🎥10 MIN 2000
-                                  ( Fingering, play,Boob Play with Hot
-                                  y sound)
-                                  
-                                  🎥15 MIN 2500
-                                  ( Fingering, play , Boob play with
-                                  Hot y Sound)
-                                  
-                                  🎥4500 - 20 MIN WITH FACE
-                                  👍2 TOYS 1 DILDO👍
-                                  ((BOO.BS & PUSS.Y PALY WITH FINGERING ALSO Y HOT TALK N SOUNDS JUCE COME OUT )
-                                  
-                                  🟥CATOGERY PACKAGE🟥
-                                  BELOW ALL PACKAGE DOING WITH FACE AND 2 TOYS ALSO HOT Y SOUNDS
-                                  
-                                  🎥20 Min - 4500 -FEMDOM PUNISHMENT
-                                  🎥20 Min - 4500 -ANAL PLAY SESSION
-                                  🎥20 Min - 4500 -SE.XY DANCE
-                                  🎥20 Min - 4500 -ROLE PLAY
-                                  🎥20 Min - 4500 - GOLD.EN SH.OWER
-                                  🎥20 Min - 4500 -BATH SHOW AND BOOBS AND PLAY WITH HOT Y SOUNDS
-                                  
-                                  🎥30Min -5500/=WITH FACE
-                                  
-                                  BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , 💦Squirting 100%)
-                                  
-                                  🎥45 Min -6500/=WITH FACE
-                                  
-                                  BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , AN.AL UR DURTY REQUEST 💦Squirting 100%
-                                  
-                                  📸Nude Pic with Face one 1000
-                                  📸Nude pic with Face two 1500
-                                  
-                                  🎥 Record Solo Video 10 Min 4500
-                                  🎥 Record Solo Video 15 Min 6500
-                                  (Fingering, Boob Play ,Toy & Dildo ,Squirting💦with face )
-                                  
-                                  💥Full Service 25000/- For 3hours Full service Only Booking Appointment .If you want book appointment for full service 5000 pay and book appointment 
-                                  My whatsapp number 0757176697";
-
-                                    echo nl2br($string);
+                                } else {
                                     ?>
-                                </p>
+                                    <p>
+                                    <?php
+                                }
+                                    ?>
+                                    <?php
+                                    echo nl2br($d['ad_descrip']);
+                                    ?>
+                                    </p>
                             </div>
                         </div>
                         <hr>
@@ -223,24 +188,70 @@
     <script src="plugins/google-map/gmap.js"></script>
     <!-- main js -->
     <script src="js/custom.js"></script>
+    <script src="main.js"></script>
     <script>
         function myFunction(number) {
-            // Get the text field
-            var copyText = document.getElementById("myInput");
+            // Create a temporary input element
+            var tempInput = document.createElement('input');
 
+            // Set its value to the current page URL
+            tempInput.value = number;
 
-            // Copy the text inside the text field
-            navigator.clipboard.writeText(number);
+            // Append it to the document
+            document.body.appendChild(tempInput);
 
-            alert('Copied Number!')
+            // Select the content of the input
+            tempInput.select();
+
+            // Execute the copy command
+            document.execCommand('copy');
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Notify the user
+            alert('Number Copied!');
         }
 
         function share_link() {
 
-            navigator.clipboard.writeText(window.location.href);
+            // Create a temporary input element
+            var tempInput = document.createElement('input');
 
-            alert('Link Copied!')
+            // Set its value to the current page URL
+            tempInput.value = document.location.href;
+
+            // Append it to the document
+            document.body.appendChild(tempInput);
+
+            // Select the content of the input
+            tempInput.select();
+
+            // Execute the copy command
+            document.execCommand('copy');
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Notify the user
+            alert('Link Copied!');
         }
+
+        // function share_link() {
+        //     if (navigator.clipboard) {
+        //         navigator.clipboard.writeText(window.location.href)
+        //             .then(function() {
+        //                 alert('Link Copied!');
+        //             })
+        //             .catch(function(err) {
+        //                 console.error('Unable to copy text to clipboard', err);
+        //             });
+        //     } else {
+        //         // Fallback for browsers that don't support the Clipboard API
+        //         // You can provide an alternative method here, such as creating a text input and selecting its value
+        //         console.warn('Clipboard API not supported. Please copy the link manually.');
+        //     }
+        // }
     </script>
 </body>
 

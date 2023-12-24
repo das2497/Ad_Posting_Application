@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require 'connection.php';
 
 if (empty($_POST['ad_title'])) {
@@ -14,13 +14,27 @@ if (empty($_POST['ad_title'])) {
     echo "Please Select Category";
 } else {
 
+
+    echo $_POST['ad_id'];
+    echo "<br/>";
+    echo $_POST['ad_title'];
+    echo "<br/>";
+    echo $_POST['ad_mobile'];
+    echo "<br/>";
+    echo $_POST['ad_description'];
+    echo "<br/>";
+    echo $_POST['ad_location'];
+    echo "<br/>";
+    echo $_POST['ad_category'];
+    echo "<br/>";
+
     $uploadDir = 'images/ad_photos/';
     $img1 = '';
     $img2 = '';
     $img3 = '';
     $img4 = '';
 
-    if ($_FILES['file1']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['file1']) && $_FILES['file1']['error'] === UPLOAD_ERR_OK) {
         $img1 = $uploadDir . basename($_FILES['file1']['name']);
 
         // Move the uploaded file to the server directory
@@ -45,13 +59,22 @@ if (empty($_POST['ad_title'])) {
         move_uploaded_file($_FILES['file4']['tmp_name'], $img4);
     }
 
+    echo $img1 . ' ' . $img2 . ' ' . $img3 . ' ' . $img4;
+
     $currentDateTime = date("Y-m-d H:i:s");
 
-    Database::iud("INSERT INTO ad_ad(ad_title,ad_descrip,ad_contact,ad_location,ad_img1,ad_img2,ad_img3,ad_img4,ad_categry,ad_user_ausr_id,ad_badge_adbg_id,ad_cashback,ad_stat,ad_time)
-    VALUES ('" . $_POST['ad_title'] . "','" . addslashes($_POST['ad_description']) . "','" . $_POST['ad_mobile'] . "','" . $_POST['ad_location'] . "','" . $img1 . "','" . $img2 . "','" . $img3 . "',
-    '" . $img4 . "','" . $_POST['ad_category'] . "','" . $_SESSION['usr']['ausr_id'] . "','2','0','0','" . $currentDateTime . "');");
-    echo "INSERT INTO ad_ad(ad_title,ad_descrip,ad_contact,ad_location,ad_img1,ad_img2,ad_img3,ad_img4,ad_categry,ad_user_ausr_id,ad_badge_adbg_id,ad_cashback,ad_stat,ad_time)
-    VALUES ('" . $_POST['ad_title'] . "','" . $_POST['ad_description'] . "','" . $_POST['ad_mobile'] . "','" . $_POST['ad_location'] . "','" . $img1 . "','" . $img2 . "','" . $img3 . "',
-    '" . $img4 . "','" . $_POST['ad_category'] . "','" . $_SESSION['usr']['ausr_id'] . "','2','0','0','" . $currentDateTime . "');";
-    
+    Database::search("UPDATE ad_ad
+    SET
+        ad_title = '" . $_POST['ad_title'] . "',
+        ad_descrip = '" . $_POST['ad_description'] . "',
+        ad_contact = '" . $_POST['ad_mobile'] . "',
+        ad_location = '" . $_POST['ad_location'] . "',
+        ad_img1 = '" . $img1 . "',
+        ad_img2 = '" . $img2 . "',
+        ad_img3 = '" . $img3 . "',
+        ad_img4 = '" . $img4 . "',
+        ad_categry = '" . $d['ad_category'] . "',
+        ad_time = '" . $currentDateTime . "'
+    WHERE
+        ad_id = '" . $_POST['ad_id'] . "';");
 }

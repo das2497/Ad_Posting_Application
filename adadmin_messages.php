@@ -90,7 +90,7 @@
 
 <body>
 
-    <?php require 'header_admin.php'; ?>
+    <?php require 'header_n_admin.php'; ?>
 
     <div class="py-2"></div>
 
@@ -99,17 +99,12 @@
             <div class="row no-gutters">
 
                 <div class="col-12">
-                    <h4 class="text-center">Admin Pannel</h4>
+                    <h4 class="text-center">Admin Pannel All Messeges</h4>
                 </div>
 
             </div>
             <div class="py-2"></div>
 
-            <div class="row">
-                <div class="col-4 offset-4 d-grid">
-                    <button class="btn btn-outline-danger">Add New User</button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -136,39 +131,23 @@
 
                 <div class="col-lg-8 col-12">
 
-                    <div class="row  " onclick="admin_message_body();">
-                        <div class="col-8">
-                            <h4>User</h4>
-                        </div>
-                        <div class="col-2">
-                            <h4>Messege type</h4>
-                        </div>
-                    </div>
-
 
                     <?php
-                    for ($x = 0; $x < 20; $x++) {
+                    require 'connection.php';
 
+                    $rs = Database::search("SELECT * FROM ad_message
+                                    INNER JOIN ad_msg_type ON ad_message.admsg_type=ad_msg_type.admsgt_id;");
+
+                    for ($x = 0; $x < $rs->num_rows; $x++) {
+                        $d = $rs->fetch_assoc();
                     ?>
                         <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_message_body();">
-                            <div class="col-8">
-                                <h4><?php echo mb_substr("User Name", 0, 20, 'UTF-8'); ?></h4>
-                                <h4><?php echo mb_substr("Mobile Number", 0, 20, 'UTF-8'); ?></h4>
+                            <div class="col-12">
+                                <h4><?php echo mb_substr($d['admsg_name'], 0, 20, 'UTF-8'); ?></h4>
+                                <h4><?php echo mb_substr($d['admsg_contact'], 0, 20, 'UTF-8'); ?></h4>
+                                <h4><?php echo $d['admsgt_type']; ?></h4>
                             </div>
-                            <div class="col-2">
-                                <span class="badge text-bg-success">Normal</span>
-                            </div>
-                        </div>
-
-                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_message_body();">
-                            <div class="col-8">
-                                <h4><?php echo mb_substr("User Name", 0, 20, 'UTF-8'); ?></h4>
-                                <h4><?php echo mb_substr("Mobile Number", 0, 20, 'UTF-8'); ?></h4>
-                            </div>
-                            <div class="col-2">
-                                <span class="badge text-bg-danger">Report</span>
-                            </div>
-                        </div>
+                        </div>                  
 
                     <?php
 
@@ -176,29 +155,6 @@
                     ?>
 
 
-                    <!-- <div class="py-40"></div> -->
-
-                    <hr class="">
-
-                    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item active">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                                    <span class="">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span class="">Next</span>
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
 
                 </div>
             </div>

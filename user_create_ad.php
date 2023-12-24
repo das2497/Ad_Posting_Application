@@ -79,14 +79,7 @@
                                 <label for="ad_mobile">Your Mobile Number</label>
                                 <input type="text" id="ad_mobile" class="form-control" placeholder="Your Mobile Number">
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="ad_description">Description</label>
-                                <!-- <input type="email" class="form-control" name="email-address" id="email-address" placeholder="Description"> -->
-                                <textarea class="form-control" cols="30" rows="4" placeholder="Description" id="ad_description"></textarea>
-                            </div>
-                        </div>
+                        </div>                        
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="ad_location">Location</label>
@@ -103,6 +96,12 @@
                                 <option value="1">Hotel</option>
                                 <option value="1">Other</option>
                             </select>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ad_description">Description</label>                                
+                                <textarea class="form-control" cols="30" rows="40" placeholder="Description" id="ad_description"></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 mb-2">

@@ -156,321 +156,260 @@ require 'connection.php';
                     </div>
                 </div>
 
-                <div class="col-lg-8 col-12">
+                <?php
+                if (isset($_SESSION['usr'])) {
+                ?>
 
-                    <!-- VIP -->
+                    <div class="col-lg-8 col-12">
 
-                    <div class="row border border-danger rounded blinking-shadow ad mt-4 " onclick="ad_body();">
-                        <div class="col-4 d-flex flex-column ">
-                            <img class="img-fluid d-none d-lg-block" src="images/ad_photos/ad1.jpg" alt="">
-                            <img class="d-block d-lg-none" src="images/ad_photos/ad1.jpg" alt="" style="width: 120px; height: 120px;">
-                            <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                </svg>
-                                12k
-                            </span>
-                        </div>
-                        <div class="col-8">
-                            <h4 class="d-inline"><?php echo mb_substr("💦👙Live Cam Show👙💦", 0, 10, 'UTF-8'); ?>...</h4>
-                            <span class="badge rounded-pill text-white bg-danger float-right" style="font-size: 16px;"> VIP ⭐ </span>
-                            <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                <?php
-                                $discription = "❎මෙම සේවාව වයස අවුරුදු 18ට වැඩි අය සඳහා පමණයි ❎ ❎this service only 18+❎
-                                    
-                                    🌼Vedeo verification 200🌼
-                                    🌼Bank transfer & ez cash🌼
-                                    
-                                    🌚බොරු ස්ලිප් එවීමෙන් වලකින්න ඔන්ලයින් හරහා චෙක් කිරීමට පුළුවන් ඔබේත් මගේත් කාලය අපරාදේ 🌝";
-                                echo mb_substr($discription, 0, 120, 'UTF-8');
-                                ?>.....
-                            </p>
-                            <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                <?php
-                                $discription = "❎මෙම සේවාව වයස අවුරුදු 18ට වැඩි අය සඳහා පමණයි ❎ ❎this service only 18+❎
-                                    
-                                    🌼Vedeo verification 200🌼
-                                    🌼Bank transfer & ez cash🌼
-                                    
-                                    🌚බොරු ස්ලිප් එවීමෙන් වලකින්න ඔන්ලයින් හරහා චෙක් කිරීමට පුළුවන් ඔබේත් මගේත් කාලය අපරාදේ 🌝";
-                                echo mb_substr($discription, 0, 68, 'UTF-8');
-                                ?>.....
-                            </p>
-                            <div class="row">
-                                <div class="col-6 ">
-                                    <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
-                                </div>
-                                <div class="col-6">
-                                    <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;">22 min ago</span>
-                                </div>
-                            </div>
-                        </div>
+                 
+
+                        <?php
+
+                        $rs = Database::search("SELECT *
+FROM ad_ad
+INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+WHERE ad_ad.ad_user_ausr_id='" . $_SESSION['usr']['ausr_id'] . "' 
+ORDER BY ad_time DESC;");
+
+                        if ($rs->num_rows == 0) {
+                        ?>
+                            <h4 class="text-center">No Ads You Created</h4>
+                            <?php
+                        } else {
+                            ?>
+                            <h4 class="text-center">Your Ads</h4>
+                            <?php
+
+
+                            for ($x = 0; $x < $rs->num_rows; $x++) {
+                                $d = $rs->fetch_assoc();
+
+                                if ($d['ad_badge_adbg_id'] == 1) {
+                            ?>
+                                    <div class="row border border-primary rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                    <?php
+                                } elseif ($d['ad_badge_adbg_id'] == 2) {
+                                    ?>
+                                        <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                        <?php
+                                    } elseif ($d['ad_badge_adbg_id'] == 3) {
+                                        ?>
+                                            <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                            <?php
+                                        }
+                                            ?>
+                                            <div class="col-4 d-flex flex-column ">
+                                                <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
+                                                <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
+                                                <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                        </svg>
+                        12k
+                    </span> -->
+                                            </div>
+                                            <div class="col-8">
+                                                <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
+                                                <?php
+                                                if ($d['ad_badge_adbg_id'] == 1) {
+                                                ?>
+
+                                                <?php
+                                                } elseif ($d['ad_badge_adbg_id'] == 2) {
+                                                ?>
+                                                    <span class="badge rounded-pill text-white bg-warning float-right" style="font-size: 16px;">BEST AD</span>
+                                                <?php
+                                                } elseif ($d['ad_badge_adbg_id'] == 3) {
+                                                ?>
+                                                    <span class="badge rounded-pill text-white bg-danger float-right" style="font-size: 16px;"> VIP ⭐ </span>
+
+                                                <?php
+                                                }
+                                                ?>
+                                                <p class="d-none d-lg-block" style="word-wrap: break-word;">
+                                                    <?php
+                                                    echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
+                                                    ?>.....
+                                                </p>
+                                                <p class="d-block d-lg-none" style="word-wrap: break-word;">
+                                                    <?php
+                                                    echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
+                                                    ?>.....
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-6 ">
+                                                        <?php
+                                                        if ($d['ad_cashback'] == 1) {
+                                                        ?>
+                                                            <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;">22 min ago</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        <?php
+
+                                    }
+                                        ?>
+
+                                        <hr class="">
+
+                                        <!-- <nav aria-label="pagination-wrapper" class="pagination-wrapper">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item active">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
+                            <span class="">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span class="">Next</span>
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav> -->
+
+                                        </div>
+                                    </div>
                     </div>
 
-                    <?php
-                    for ($x = 0; $x < 39; $x++) {
+                <?php
 
-                    ?>
-                        <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body();">
-                            <div class="col-4 d-flex flex-column ">
-                                <img class="img-fluid d-none d-lg-block" src="images/ad_photos/ad1.jpg" alt="">
-                                <img class="d-block d-lg-none" src="images/ad_photos/ad1.jpg" alt="" style="width: 120px; height: 120px;">
-                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                    </svg>
-                                    12k
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <h4 class="d-inline"><?php echo mb_substr("genuine cam service", 0, 9, 'UTF-8'); ?>...</h4>
-                                <span class="badge rounded-pill text-white bg-warning float-right" style="font-size: 16px;">BEST AD</span>
-                                <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                    <?php
-                                    $discription = "Post AD
- 2 weeks ago
-lanka ads image
-Photo Verified ✅
-💃Genuine Cam Service 💟 Cute♥ Verified ✅
- All Locations
-|
-Live Cam
- 7.5k likes
- 0757176697
- Like
- Save Share
-Tell me you found me on BestAddLk.club & get a special Discount 
-ඔබ මා සොයාගත්තෙ BestAddLk .club වෙබ් අඩවියෙන් බව පවසා සුවිශෙෂි මිල අඩුකිරීම් ලබා ගන්න.
- Call (0757176697)
- Chat on Whatsapp
-🩷Im Sakuni
-💜22 years Old
-💜Live cam model
-🩷💯Real photo attached ✔
+                        }
+                    } else {
+                ?>
 
-🔐Video Verification : 500/= 💰
+                <div class="col-lg-8 col-12">
 
-⛔This Service 21+ years Old plus person only
-
-❌මෙම සේවාව ලබා දෙනු ලබන්නේ වයස 21 වැඩි පුද්ගලයන්ට පමණි. වයස තහවුරු කල පසු සේවාව ලබා ගත හැක.❌
-
-(ඔබගේ වයසේ අනන්‍යතාව තහවුරු කිරීමට කාරුණික වන්න)
-
-🩷I’m attached my real photograph 📸 ❤My apartment at Rajagiriya . Clam and hidden Parking 
-
-If you wanna verification Pay Rs 500/-
-verification fee is Deduct your choosing package
-
-Cam price details
-
-🎥10 MIN 2000
-( Fingering, play,Boob Play with Hot
-y sound)
-
-🎥15 MIN 2500
-( Fingering, play , Boob play with
-Hot y Sound)
-
-🎥4500 - 20 MIN WITH FACE
-👍2 TOYS 1 DILDO👍
-((BOO.BS & PUSS.Y PALY WITH FINGERING ALSO Y HOT TALK N SOUNDS JUCE COME OUT )
-
-🟥CATOGERY PACKAGE🟥
-BELOW ALL PACKAGE DOING WITH FACE AND 2 TOYS ALSO HOT Y SOUNDS
-
-🎥20 Min - 4500 -FEMDOM PUNISHMENT
-🎥20 Min - 4500 -ANAL PLAY SESSION
-🎥20 Min - 4500 -SE.XY DANCE
-🎥20 Min - 4500 -ROLE PLAY
-🎥20 Min - 4500 - GOLD.EN SH.OWER
-🎥20 Min - 4500 -BATH SHOW AND BOOBS AND PLAY WITH HOT Y SOUNDS
-
-🎥30Min -5500/=WITH FACE
-
-BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , 💦Squirting 100%)
-
-🎥45 Min -6500/=WITH FACE
-
-BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , AN.AL UR DURTY REQUEST 💦Squirting 100%
-
-📸Nude Pic with Face one 1000
-📸Nude pic with Face two 1500
-
-🎥 Record Solo Video 10 Min 4500
-🎥 Record Solo Video 15 Min 6500
-(Fingering, Boob Play ,Toy & Dildo ,Squirting💦with face )
-
-💥Full Service 25000/- For 3hours Full service Only Booking Appointment .If you want book appointment for full service 5000 pay and book appointment 
-My whatsapp number 0757176697";
-                                    echo mb_substr($discription, 0, 120, 'UTF-8');
-                                    ?>.....
-                                </p>
-                                <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                    <?php
-                                    $discription = "Post AD
- 2 weeks ago
-lanka ads image
-Photo Verified ✅
-💃Genuine Cam Service 💟 Cute♥ Verified ✅
- All Locations
-|
-Live Cam
- 7.5k likes
- 0757176697
- Like
- Save Share
-Tell me you found me on BestAddLk.club & get a special Discount 
-ඔබ මා සොයාගත්තෙ BestAddLk .club වෙබ් අඩවියෙන් බව පවසා සුවිශෙෂි මිල අඩුකිරීම් ලබා ගන්න.
- Call (0757176697)
- Chat on Whatsapp
-🩷Im Sakuni
-💜22 years Old
-💜Live cam model
-🩷💯Real photo attached ✔
-
-🔐Video Verification : 500/= 💰
-
-⛔This Service 21+ years Old plus person only
-
-❌මෙම සේවාව ලබා දෙනු ලබන්නේ වයස 21 වැඩි පුද්ගලයන්ට පමණි. වයස තහවුරු කල පසු සේවාව ලබා ගත හැක.❌
-
-(ඔබගේ වයසේ අනන්‍යතාව තහවුරු කිරීමට කාරුණික වන්න)
-
-🩷I’m attached my real photograph 📸 ❤My apartment at Rajagiriya . Clam and hidden Parking 
-
-If you wanna verification Pay Rs 500/-
-verification fee is Deduct your choosing package
-
-Cam price details
-
-🎥10 MIN 2000
-( Fingering, play,Boob Play with Hot
-y sound)
-
-🎥15 MIN 2500
-( Fingering, play , Boob play with
-Hot y Sound)
-
-🎥4500 - 20 MIN WITH FACE
-👍2 TOYS 1 DILDO👍
-((BOO.BS & PUSS.Y PALY WITH FINGERING ALSO Y HOT TALK N SOUNDS JUCE COME OUT )
-
-🟥CATOGERY PACKAGE🟥
-BELOW ALL PACKAGE DOING WITH FACE AND 2 TOYS ALSO HOT Y SOUNDS
-
-🎥20 Min - 4500 -FEMDOM PUNISHMENT
-🎥20 Min - 4500 -ANAL PLAY SESSION
-🎥20 Min - 4500 -SE.XY DANCE
-🎥20 Min - 4500 -ROLE PLAY
-🎥20 Min - 4500 - GOLD.EN SH.OWER
-🎥20 Min - 4500 -BATH SHOW AND BOOBS AND PLAY WITH HOT Y SOUNDS
-
-🎥30Min -5500/=WITH FACE
-
-BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , 💦Squirting 100%)
-
-🎥45 Min -6500/=WITH FACE
-
-BOO.BS, ,TOY OR DILDO,HOT TALK OR HARD TALK , AN.AL UR DURTY REQUEST 💦Squirting 100%
-
-📸Nude Pic with Face one 1000
-📸Nude pic with Face two 1500
-
-🎥 Record Solo Video 10 Min 4500
-🎥 Record Solo Video 15 Min 6500
-(Fingering, Boob Play ,Toy & Dildo ,Squirting💦with face )
-
-💥Full Service 25000/- For 3hours Full service Only Booking Appointment .If you want book appointment for full service 5000 pay and book appointment 
-My whatsapp number 0757176697";
-                                    echo mb_substr($discription, 0, 68, 'UTF-8');
-                                    ?>.....
-                                </p>
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;">22 min ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     <?php
 
-                    }
+                        $rs = Database::search("SELECT *
+FROM ad_ad
+INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+ORDER BY ad_time DESC;");
+
+                        for ($x = 0; $x < $rs->num_rows; $x++) {
+                            $d = $rs->fetch_assoc();
+
+                            if ($d['ad_badge_adbg_id'] == 1) {
                     ?>
-
-
-                    <!-- <div class="py-40"></div> -->
-
-                    <hr class="">
-
-                    <div class="news-style-two">
-                        <div class="row">
-                            <div class="col-12">
-
+                            <div class="row border border-primary rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                            <?php
+                            } elseif ($d['ad_badge_adbg_id'] == 2) {
+                            ?>
+                                <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
                                 <?php
-                                for ($y = 0; $y < 10; $y++) {
-
+                            } elseif ($d['ad_badge_adbg_id'] == 3) {
                                 ?>
-                                    <div class="row border border-primary rounded shadow ad mt-4 " onclick="ad_body();">
-                                        <div class="col-4 d-flex flex-column ">
-                                            <img class="img-fluid d-none d-lg-block" src="images/apple-touch-icon.png" alt="">
-                                            <img class="d-block d-lg-none" src="images/apple-touch-icon.png" alt="" style="width: 100px; height: 100px;">
-                                            <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                                </svg>
-                                                12k
-                                            </span>
-                                        </div>
-                                        <div class="col-8">
-                                            <h4 class="d-inline">Title ................</h4>
-                                            <!-- <span class="badge rounded-pill text-white bg-warning float-right" style="font-size: 16px;">TOP AD</span> -->
-                                            <p class="d-none d-lg-block" style="word-wrap: break-word;">Discription................................................................................................................................................................................................................................................................................................................................................</p>
-                                            <p class="d-block d-lg-none" style="word-wrap: break-word;">Discription........................................</p>
-                                            <div class="row">
-                                                <div class="col-6 ">
-                                                    <!-- <span class="badge rounded-pill text-white bg-success" style="font-size: 10px;">Cash Back Guaranteed</span> -->
-                                                </div>
-                                                <div class="col-6">
-                                                    <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;">22 minutes ago</span>
-                                                </div>
+                                    <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                    <?php
+                                }
+                                    ?>
+                                    <div class="col-4 d-flex flex-column ">
+                                        <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
+                                        <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
+                                        <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                        </svg>
+                        12k
+                    </span> -->
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
+                                        <?php
+                                        if ($d['ad_badge_adbg_id'] == 1) {
+                                        ?>
+
+                                        <?php
+                                        } elseif ($d['ad_badge_adbg_id'] == 2) {
+                                        ?>
+                                            <span class="badge rounded-pill text-white bg-warning float-right" style="font-size: 16px;">BEST AD</span>
+                                        <?php
+                                        } elseif ($d['ad_badge_adbg_id'] == 3) {
+                                        ?>
+                                            <span class="badge rounded-pill text-white bg-danger float-right" style="font-size: 16px;"> VIP ⭐ </span>
+
+                                        <?php
+                                        }
+                                        ?>
+                                        <p class="d-none d-lg-block" style="word-wrap: break-word;">
+                                            <?php
+                                            echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
+                                            ?>.....
+                                        </p>
+                                        <p class="d-block d-lg-none" style="word-wrap: break-word;">
+                                            <?php
+                                            echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
+                                            ?>.....
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-6 ">
+                                                <?php
+                                                if ($d['ad_cashback'] == 1) {
+                                                ?>
+                                                    <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-6">
+                                                <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;">22 min ago</span>
                                             </div>
                                         </div>
                                     </div>
+                                    </div>
                                 <?php
 
-                                }
+                            }
                                 ?>
+
+                                <hr class="">
+
+                                <!-- <nav aria-label="pagination-wrapper" class="pagination-wrapper">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item active">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
+                            <span class="">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span class="">Next</span>
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav> -->
+
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item active">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                                    <span class="">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span class="">Next</span>
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
                 </div>
+
+            <?php
+                    } ?>
+
+
             </div>
-        </div>
-        </div>
     </section>
 
 
