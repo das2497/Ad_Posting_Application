@@ -176,6 +176,7 @@
                         </div>
                         <div class="col-md-12 mb-2">
                             <button class="btn btn-primary" onclick="update_ad(<?= $_GET['ad_id'] ?>);">Update Ad</button>
+                            <a class="btn btn-dark mt-2" href="adadmin.php">Go Back</a>
                         </div>
                     </div>
                 </div>

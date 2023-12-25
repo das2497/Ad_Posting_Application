@@ -52,6 +52,11 @@
                                     All Users
                                 </a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="adadmin_users.php">
+                                    Banners
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     My Account
@@ -82,14 +87,30 @@
                 </span>
             </div>
         </div>
+        <?php
+
+        // require 'connection.php';
+
+        $rs = Database::search("SELECT * FROM ad_message WHERE admsg_stat='0';");
+        if ($rs->num_rows > 0) {
+        ?>
+            <div class="col-12 text-center my-2">
+                <a href="adadmin_messages.php" class="btn btn-outline-success">You Have New Messeges <span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true"></span>
+            </div></a>
+        <?php
+        }
+        ?>
+
 
     </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search">
-                <i class="fa fa-times"></i>
-            </span>
-        </div>
-    </form>
+
+</div>
+<form class="site-search" method="get">
+    <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
+    <div class="search-close">
+        <span class="close-search">
+            <i class="fa fa-times"></i>
+        </span>
+    </div>
+</form>
 </div>

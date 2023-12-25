@@ -256,7 +256,7 @@ function update_ad(ad_id) {
             let t = r.responseText;
             alert(t);
             if (t == 'success') {
-                location.reload();
+                window.location.href = 'adadmin.php';
             }
         }
     }
@@ -307,4 +307,28 @@ function rg_user() {
     f.append('rg_conf_pass', rg_conf_pass.value);
     r.open("POST", "rg_process.php", true);
     r.send(f);
+}
+
+function delete_ad(ad_id) {
+
+    var isConfirmed = window.confirm('Are you sure you want to proceed?');
+    if (isConfirmed) {
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function () {
+            if (r.readyState == 4 && r.status == 200) {
+                console.log(r.responseText);
+                let t = r.responseText;
+                alert(t);
+                if (t == 'success') {
+                    location.reload();
+                }
+            }
+        }
+        var f = new FormData();
+        f.append('ad_id', ad_id);
+        r.open("POST", "ad_delete_process.php", true);
+        r.send(f);
+    }
+
+
 }

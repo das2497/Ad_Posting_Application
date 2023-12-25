@@ -15,24 +15,27 @@ if (empty($_POST['ad_title'])) {
 } else {
 
 
-    echo $_POST['ad_id'];
-    echo "<br/>";
-    echo $_POST['ad_title'];
-    echo "<br/>";
-    echo $_POST['ad_mobile'];
-    echo "<br/>";
-    echo $_POST['ad_description'];
-    echo "<br/>";
-    echo $_POST['ad_location'];
-    echo "<br/>";
-    echo $_POST['ad_category'];
-    echo "<br/>";
+    // echo $_POST['ad_id'];
+    // echo "<br/>";
+    // echo $_POST['ad_title'];
+    // echo "<br/>";
+    // echo $_POST['ad_mobile'];
+    // echo "<br/>";
+    // echo $_POST['ad_description'];
+    // echo "<br/>";
+    // echo $_POST['ad_location'];
+    // echo "<br/>";
+    // echo $_POST['ad_category'];
+    // echo "<br/>";
+
+    $rs = Database::search("SELECT * FROM ad_ad WHERE ad_id='" . $_POST['ad_id'] . "';");
+    $d = $rs->fetch_assoc();
 
     $uploadDir = 'images/ad_photos/';
-    $img1 = '';
-    $img2 = '';
-    $img3 = '';
-    $img4 = '';
+    $img1 = $d['ad_img1'];
+    $img2 = $d['ad_img2'];
+    $img3 = $d['ad_img3'];
+    $img4 = $d['ad_img4'];
 
     if (isset($_FILES['file1']) && $_FILES['file1']['error'] === UPLOAD_ERR_OK) {
         $img1 = $uploadDir . basename($_FILES['file1']['name']);
@@ -59,22 +62,24 @@ if (empty($_POST['ad_title'])) {
         move_uploaded_file($_FILES['file4']['tmp_name'], $img4);
     }
 
-    echo $img1 . ' ' . $img2 . ' ' . $img3 . ' ' . $img4;
+    // echo $img1 . ' ' . $img2 . ' ' . $img3 . ' ' . $img4;
 
     $currentDateTime = date("Y-m-d H:i:s");
 
     Database::search("UPDATE ad_ad
     SET
-        ad_title = '" . $_POST['ad_title'] . "',
-        ad_descrip = '" . $_POST['ad_description'] . "',
+        ad_title = '" . addslashes($_POST['ad_title']) . "',
+        ad_descrip = '" . addslashes($_POST['ad_description']) . "',
         ad_contact = '" . $_POST['ad_mobile'] . "',
         ad_location = '" . $_POST['ad_location'] . "',
         ad_img1 = '" . $img1 . "',
         ad_img2 = '" . $img2 . "',
         ad_img3 = '" . $img3 . "',
         ad_img4 = '" . $img4 . "',
-        ad_categry = '" . $d['ad_category'] . "',
+        ad_categry = '" . $_POST['ad_category'] . "',
         ad_time = '" . $currentDateTime . "'
     WHERE
         ad_id = '" . $_POST['ad_id'] . "';");
+
+    echo "success";
 }

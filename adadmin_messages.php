@@ -90,7 +90,9 @@
 
 <body>
 
-    <?php require 'header_n_admin.php'; ?>
+    <?php
+    require 'header_n_admin.php';
+    ?>
 
     <div class="py-2"></div>
 
@@ -138,16 +140,18 @@
                     $rs = Database::search("SELECT * FROM ad_message
                                     INNER JOIN ad_msg_type ON ad_message.admsg_type=ad_msg_type.admsgt_id;");
 
+                    Database::search("UPDATE ad_message SET admsg_stat='1';");
+
                     for ($x = 0; $x < $rs->num_rows; $x++) {
                         $d = $rs->fetch_assoc();
                     ?>
-                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_message_body();">
+                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="copy_number('<?php echo mb_substr($d['admsg_contact'], 0, 20, 'UTF-8'); ?>');">
                             <div class="col-12">
                                 <h4><?php echo mb_substr($d['admsg_name'], 0, 20, 'UTF-8'); ?></h4>
                                 <h4><?php echo mb_substr($d['admsg_contact'], 0, 20, 'UTF-8'); ?></h4>
                                 <h4><?php echo $d['admsgt_type']; ?></h4>
                             </div>
-                        </div>                  
+                        </div>
 
                     <?php
 
@@ -181,6 +185,31 @@
     <!-- main js -->
     <script src="js/custom.js"></script>
     <script src="main.js"></script>
+    <script>
+        function copy_number(number) {
+            // alert(number);
+            // Create a temporary input element
+            var tempInput = document.createElement('input');
+
+            // Set its value to the current page URL
+            tempInput.value = number;
+
+            // Append it to the document
+            document.body.appendChild(tempInput);
+
+            // Select the content of the input
+            tempInput.select();
+
+            // Execute the copy command
+            document.execCommand('copy');
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Notify the user
+            alert('Number Copied!');
+        }
+    </script>
 </body>
 
 </html>

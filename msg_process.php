@@ -6,6 +6,7 @@ if (empty($_POST['msg_name'])) {
 } elseif (empty($_POST['msg_contact'])) {
     echo "ඔබගේ දුරකථන අංකය ලබා දෙන්න.";
 } else {
-    Database::search("INSERT INTO ad_message(admsg_name,admsg_contact,admsg_type) VALUES ('" . $_POST['msg_name'] . "','" . $_POST['msg_contact'] . "','" . $_POST['type'] . "');");
+    Database::search("INSERT INTO ad_message(admsg_name,admsg_contact,admsg_type,admsg_stat) 
+    VALUES ('" . $_POST['msg_name'] . "','" . $_POST['msg_contact'] . "','" . $_POST['type'] . "','1');");
     echo "success";
 }

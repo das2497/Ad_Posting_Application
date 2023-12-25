@@ -111,7 +111,7 @@ $d = $rs->fetch_assoc();
                                 <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
                             </p>
                             <p>
-                                <a class="btn btn-outline-success" href="https://wa.me/<?= $d['ausr_contact']; ?>">
+                                <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
                                     <i class="bi bi-whatsapp"></i> Chat On Whatsapp
                                 </a>
                             </p>
@@ -235,6 +235,23 @@ $d = $rs->fetch_assoc();
 
             // Notify the user
             alert('Link Copied!');
+        }
+
+        function sendMessage(number) {
+            // Recipient's phone number (including country code)
+            var recipientPhoneNumber = number;
+
+            // Message to be sent
+            var message = 'Hello from JavaScript!';
+
+            // URL encode the message
+            var encodedMessage = encodeURIComponent(message);
+
+            // Construct the WhatsApp link
+            var whatsappLink = 'https://wa.me/' + recipientPhoneNumber + '?text=' + 'මෙම දැන්වීම BEST AD LK වෙබ් අඩවියෙන් ලබා ගතිමි!! \n I got this ad from BEST AD LK website!!';
+
+            // Open the link in a new tab or window
+            window.open(whatsappLink, '_blank');
         }
 
         // function share_link() {
