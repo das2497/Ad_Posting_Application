@@ -37,7 +37,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12 col-lg-6 text-center">
-                <a href="index.html"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
+                <a href="index.php"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
 
                 <ul class="list-inline footer-social">
                     <li class="li list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="fa fa-facebook"></i></a></li>

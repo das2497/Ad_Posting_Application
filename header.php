@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                    <a class="navbar-brand d-lg-none" href="index.php">
+                    <a class="navbar-brand d-lg-none" href="index.php?srch=">
                         <img src="images/logos/footer-logo.png" alt="">
                     </a>
 

@@ -52,7 +52,9 @@
                     <div class="login">
 
                         <h3 class="">User Settings</h3>
-                        <div class="login-form row">
+                        <button class="btn btn-primary w-100 my-2" onclick="user_republish(<?= $_GET['ad_id'] ?>);">RePublish</button>
+
+                        <div class="login-form row mt-2">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="usr_badge">Selsect Badge</label>
@@ -60,6 +62,7 @@
                                         <option value="1">Normal</option>
                                         <option value="2">Best Ad</option>
                                         <option value="3">VIP</option>
+                                        <option value="4">Banner</option>
                                     </select>
                                 </div>
                             </div>

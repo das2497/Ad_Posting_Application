@@ -1,5 +1,21 @@
+window.addEventListener('load', () => {
+    at_do_like();
+});
+
+
 function ad_body(ad_id) {
-    window.location.href = 'single-post.php?ad_id=' + ad_id;
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            console.log(r.responseText);
+            let t = r.responseText;
+            window.location.href = 'single-post.php?ad_id=' + ad_id;
+        }
+    }
+    var f = new FormData();
+    f.append('ad_id', ad_id);
+    r.open("POST", "ad_click_count.php", true);
+    r.send(f);
 }
 
 function bdg_body(ad_id) {
@@ -136,7 +152,7 @@ function lg_out() {
             console.log(r.responseText);
             let t = r.responseText;
             if (t == 'success') {
-                location.reload();
+                window.location.href = 'index.php';
             }
         }
     }
@@ -331,4 +347,61 @@ function delete_ad(ad_id) {
     }
 
 
+}
+
+function user_republish(ad_id) {
+
+    var isConfirmed = window.confirm('Are you sure you want to Republish?');
+    if (isConfirmed) {
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function () {
+            if (r.readyState == 4 && r.status == 200) {
+                console.log(r.responseText);
+                let t = r.responseText;
+                alert(t);
+            }
+        }
+        var f = new FormData();
+        f.append('ad_id', ad_id);
+        r.open("POST", "ad_republish_process.php", true);
+        r.send(f);
+    }
+}
+
+
+function do_like(ad_id) {
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            console.log(r.responseText);
+            let t = r.responseText;
+            alert(t);
+        }
+    }
+    var f = new FormData();
+    f.append('ad_id', ad_id);
+    r.open("POST", "ad_like_process.php", true);
+    r.send(f);
+}
+
+function at_do_like() {
+
+    // alert("okk");
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            console.log(r.responseText);
+            let t = r.responseText;
+            // alert(t);
+        }
+    }
+    var f = new FormData();
+    r.open("POST", "auto_like.php", true);
+    r.send(f);
+}
+
+function search_ad_normal() {
+    var srch = document.getElementById('srch').value;
+    window.location.href = 'index.php?srch=' + srch;
 }
