@@ -146,10 +146,20 @@
                     for ($x = 0; $x < $rs->num_rows; $x++) {
                         $d = $rs->fetch_assoc();
                     ?>
-                        <div class="row border  border-success shadow rounded ad mt-4 " onclick="admin_user_prof(<?php echo $d['ausr_id']; ?>);">
+                        <div class="row border  border-success shadow rounded ad mt-4 ">
                             <div class="col-12">
                                 <h4><?php echo mb_substr($d['ausr_uname'], 0, 20, 'UTF-8'); ?></h4>
                                 <h4><?php echo mb_substr($d['ausr_contact'], 0, 20, 'UTF-8'); ?></h4>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-danger w-100 my-2" onclick="admin_delete_user(<?php echo $d['ausr_id']; ?>);">Delete</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-info w-100 my-2" onclick="admin_user_prof(<?php echo $d['ausr_id']; ?>);">View Details</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -159,29 +169,7 @@
                     ?>
 
 
-                    <!-- <div class="py-40"></div> -->
-
-                    <hr class="">
-
-                    <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item active">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                                    <span class="">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span class="">Next</span>
-                                    <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+           
 
                 </div>
             </div>

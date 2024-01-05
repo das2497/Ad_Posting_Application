@@ -128,100 +128,19 @@ $d = $rs->fetch_assoc();
                                 <button class="btn" onclick="share_link();"><i class="bi bi-link-45deg"></i> Copy Link</button>
                             </p>
 
-                            <?php
-                            if ($d['ad_contact_type'] == 1) {
-                            ?>
-                                <p>
-                                    <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
-                                        <i class="bi bi-whatsapp"></i> Chat On Whatsapp
-                                    </a>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
-                                        <i class="bi bi-send-fill"></i> Chat On Teligram
-                                    </a>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 2) {
-                            ?>
-                                <p>
-                                    <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
-                                        <i class="bi bi-whatsapp"></i> Chat On Whatsapp
-                                    </a>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 3) {
-                            ?>
-                                <p>
-                                    <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
-                                        <i class="bi bi-send-fill"></i> Chat On Teligram
-                                    </a>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 4) {
-                            ?>
-                                <p>
-                                    <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
-                                        <i class="bi bi-whatsapp"></i> Chat On Whatsapp
-                                    </a>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
-                                        <i class="bi bi-send-fill"></i> Chat On Teligram
-                                    </a>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 5) {
-                            ?>
-                                <p>
-                                    <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 6) {
-                            ?>
-                                <p>
-                                    <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
-                                        <i class="bi bi-whatsapp"></i> Chat On Whatsapp
-                                    </a>
-                                </p>
-                            <?php
-                            } elseif ($d['ad_contact_type'] == 7) {
-                            ?>
-                                <p>
-                                    <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
-                                        <i class="bi bi-send-fill"></i> Chat On Teligram
-                                    </a>
-                                </p>
-                            <?php
-                            } else {
-                            ?>
-                                <p>
-                                    <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
-                                        <i class="bi bi-whatsapp"></i> Chat On Whatsapp
-                                    </a>
-                                </p>
-                                <p>
-                                    <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
-                                        <i class="bi bi-send-fill"></i> Chat On Teligram
-                                    </a>
-                                </p>
-                            <?php
-                            }
-                            ?>
-
-
+                            <p>
+                                <button class="btn btn-outline-secondary" onclick="myFunction('<?= $d['ad_contact']; ?>')" id="cpnmbr">Copy Number</button>
+                            </p>
+                            <p>
+                                <a class="btn btn-outline-success" href="#" onclick="sendMessage(<?= $d['ausr_contact']; ?>);">
+                                    <i class="bi bi-whatsapp"></i> Chat On Whatsapp
+                                </a>
+                            </p>
+                            <p>
+                                <a class="btn btn-outline-primary" target="_blank" href="https://t.me/<?= $d['ausr_contact']; ?>">
+                                    <i class="bi bi-send-fill"></i> Chat On Teligram
+                                </a>
+                            </p>
                         </div>
 
                         <div class="widget">
@@ -250,8 +169,28 @@ $d = $rs->fetch_assoc();
                             </h4>
 
                             <div class="post-list-block">
-                                <p class="text-success text-center">
-                                    ඔබට මෙම වෙබ් අඩවියෙන් සේවාවක් ලබා ගැනීමේදී bestaddlk ඔබව හඳුනාගත් බව පවසන්න. එවිට ගුණාත්මක සේවාවක් ලැබෙනු ඇත
+                                <p>
+                                    Live cam සේවාව සඳහා cash diposit guarantee සේවාව නියෝජිතයන් හා සම්බන්ධ වී තහවුරු කර ඇත. යම් හෙයකින් එම සේවාව නොලැබුණහොත් ඔබට මුදල් ගෙවනු ඇත. (කොන්දේසි සහිතයි)
+                                </p>
+                                <p>
+                                    Cash diposit guarantee නොවන දැන්වීම් සදහා අපහට කල හැක්කේ එම දැන්වීම පළකල පුද්ගලයාගේ ගිණුම අවලංගු කිරීම සහ දැන්වීම ඉවත් කිරීම පමණි. එම නිසා කරුණාකර ගෙවීම් (බැංකු, ජංගම, ආදිය) ගැන ඉතා සැලකිලිමත් වන්න. අපි සපයන්නේ මාර්ගගත වෙළඳ දැන්වීම් පමණි. ඔබේ ගනුදෙනු සඳහා අපි වගකිව යුතු නොවේ.
+                                </p>
+                                <p>
+                                    Cash diposit guarantee කළ දැන්වීම් ඇතුළුව වෙනත් කිසිදු වෙළඳ දැන්වීමක ප්‍රකාශිත සියලුම ඡායාරූප සඳහා අපි වගකිව යුතු නොවේ.
+                                </p>
+                                <p>
+                                    මෙම මුදල් ආපසු ගැනීම වලංගු වන්නේ " cash diposit Guaranteed" යන කොළ පැහැති ලේබලය සහිත දැන්වීම් සඳහා පමණි.
+                                </p>
+                            </div>
+                            <div class="post-list-block">
+                                <p class="text-primary">
+                                    භාණ්ඩ සහ සේවා ලබා ගැනීමට පෙර හෝ ගනුදෙනුව තහවුරු වන තුරු මුදල් දීමෙන් වළකින්න. සියලුම ගෙවීම් පිලිබදව සැලකිලිමත් වන්න.
+
+                                    Avoid giving money before receiving Products and services or until the transaction is confirmed. Be careful with all payments.
+
+                                    full service දැන්වීම් සදහා හමුවීමට ප්‍රථම මුදල් ගෙවීමට තරම් මෝඩයෙකු නොවන්න.
+
+                                    Don't be a fool to pay before meeting for full service ads.
                                 </p>
                             </div>
                         </div>

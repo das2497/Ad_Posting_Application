@@ -18,8 +18,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
     <!-- THEME CSS
-	================================================== -->
+================================================== -->
     <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
@@ -82,7 +84,6 @@
 
 <body>
 
-
     <header class="header-navigation d-none d-lg-block">
         <div class="container">
             <div class="row align-items-center">
@@ -111,7 +112,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                        <a class="navbar-brand d-lg-none" href="index.php">
+                        <a class="navbar-brand d-lg-none" href="adadmin.php">
                             <img src="images/logos/footer-logo.png" alt="">
                         </a>
 
@@ -125,31 +126,24 @@
                             <ul class="navbar-nav mr-auto">
 
                                 <li class="nav-item ">
-                                    <a class="nav-link " href="index.php">
-                                        Home
+                                    <a class="nav-link " href="adadmin.php">
+                                        All Ads
                                     </a>
                                 </li>
-                                <li class="nav-item dropdown d-lg-none d-block">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        Categories
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="adadmin_messages.php">
+                                        Messeges
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="index.php">Personal</a>
-                                        <a class="dropdown-item" href="index.php">Spa</a>
-                                        <a class="dropdown-item" href="index.php">Live Cam</a>
-                                        <a class="dropdown-item" href="index.php">Hotel</a>
-                                        <a class="dropdown-item" href="index.php">Other</a>
-                                    </div>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        About Us
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="adadmin_users.php">
+                                        All Users
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="terms.php">Terms</a>
-                                    </div>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="adadmin_notice.php">
+                                        Notices
+                                    </a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -157,8 +151,7 @@
                                         My Account
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="signin.php">Log In</a>
-                                        <a class="dropdown-item" href="signup.php">Register</a>
+                                        <p class="dropdown-item" onclick="lg_out();">Log Out</p>
                                     </div>
                                 </li>
 
@@ -172,96 +165,34 @@
                     </nav>
 
                 </div>
+            </div>
 
-                <div class="col-12">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" style="height: 20px;" onkeyup="" id=""
-                            placeholder="Type to search" aria-label="Recipient's username"
-                            aria-describedby="basic-addon2">
-                        <span class="input-group-text" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-12 text-center mb-1">
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">
-                        Contact Us
-                    </button>
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" style="height: 20px;" onkeyup="" id=""
+                        placeholder="Type to search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </span>
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Contact Us</h1>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="loginemail">ඔබගේ නම</label>
-                                        <input class="form-control" type="text" placeholder="ඔබගේ නම" id="msg_name">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="loginemail">ඔබගේ දුරකථන අංකය.</label>
-                                        <input class="form-control" type="text" placeholder="ඔබගේ දුරකථන අංකය."
-                                            id="msg_contact">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1" value="1" checked>
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            වෙළඳ දැන්වීමක් පල කර ගැනීමට.
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault2" value="2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            ඇඩ්මින් සම්බන්ද කර ගැනීමට.
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault3" value="3">
-                                        <label class="form-check-label" for="flexRadioDefault3">
-                                            වංචාවක් පිළබඳ දැනුවත් කිරීමට.
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-outline-success" onclick="send_msg();">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-                crossorigin="anonymous"></script>
 
         </div>
-        <form class="site-search" method="get">
-            <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-            <div class="search-close">
-                <span class="close-search">
-                    <i class="fa fa-times"></i>
-                </span>
-            </div>
-        </form>
+
+    </div>
+    <form class="site-search" method="get">
+        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
+        <div class="search-close">
+            <span class="close-search">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+    </form>
     </div>
     <div class="py-2"></div>
 
@@ -270,106 +201,7 @@
             <div class="row no-gutters">
 
                 <div class="col-12">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active" style="background-color: black; height: 160px;">
-                                <h4 class="text-center text-white pt-5">ඔබගේ දැන්වීම් මෙහි පල කර ගැනීම සඳහා ඇඩ්මින්
-                                    සම්බන්ද කරගන්න.</h4>
-                            </div>
-
-                            <div class="carousel-item " style="background-color: #ff6bab;">
-
-                                <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(18);">
-
-                                    <div class="col-4 d-flex flex-column ">
-                                        <img class="img-fluid d-none d-lg-block"
-                                            src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.39.15_8c3660a6.jpg"
-                                            alt="">
-                                        <img class="d-block d-lg-none"
-                                            src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.39.15_8c3660a6.jpg"
-                                            alt="" style="width: 120px; height: 120px;">
-                                        <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-<path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-</svg>
-12k
-</span> -->
-                                    </div>
-                                    <div class="col-8">
-                                        <h4 class="d-inline">💓💓💰( 15.000/= )💰...</h4>
-                                        <p class="d-none d-lg-block text-white" style="word-wrap: break-word;">
-                                            💋💋ELITE HIGH CLASS INDEPENDENT ESCORT dewmi AT.kollupitiya💋💋
-
-                                            💕💕This is Elite high class independent escort dewmi for .....
-                                        </p>
-                                        <p class="d-block d-lg-none text-white" style="word-wrap: break-word;">
-                                            💋💋ELITE HIGH CLASS INDEPENDENT ESCORT dewmi AT.kollupitiya💋💋
-
-                                            💕💕Th.....
-                                        </p>
-                                        <div class="row">
-                                            <div class="col-6 ">
-                                            </div>
-                                            <div class="col-6">
-
-                                                <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                    style="font-size: 8px;">10 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item " style="background-color: #ff6bab;">
-
-                                <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(13);">
-
-                                    <div class="col-4 d-flex flex-column ">
-                                        <img class="img-fluid d-none d-lg-block"
-                                            src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.41.15_dd999926.jpg"
-                                            alt="">
-                                        <img class="d-block d-lg-none"
-                                            src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.41.15_dd999926.jpg"
-                                            alt="" style="width: 120px; height: 120px;">
-                                        <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-<path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-</svg>
-12k
-</span> -->
-                                    </div>
-                                    <div class="col-8">
-                                        <h4 class="d-inline">Live cam show...</h4>
-                                        <p class="d-none d-lg-block text-white" style="word-wrap: break-word;">
-                                            මේක මාගේ ඇත්තම photo එකයි
-                                            ඔය ඇඳුමෙන්ම තමයි වීඩියෝ එක කරන්නේ
-
-                                            කරුණාකර බොරුවට photo ඉල්ලා ඉල්ලා කරදර කරන්න එපා
-
-                                            👉වීඩ.....
-                                        </p>
-                                        <p class="d-block d-lg-none text-white" style="word-wrap: break-word;">
-                                            මේක මාගේ ඇත්තම photo එකයි
-                                            ඔය ඇඳුමෙන්ම තමයි වීඩියෝ එක කරන්නේ
-
-                                            කරු.....
-                                        </p>
-                                        <div class="row">
-                                            <div class="col-6 ">
-                                            </div>
-                                            <div class="col-6">
-
-                                                <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                    style="font-size: 8px;">4 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
+                    <h4 class="text-center">Admin Pannel</h4>
                 </div>
 
             </div>
@@ -377,7 +209,7 @@
 
             <div class="row">
                 <div class="col-8 offset-2 d-grid">
-                    <button class="btn btn-blinking" onclick="user_log_first();">POST YOUR AD HERE</button>
+                    <button class="btn btn-blinking" onclick="user_create_ad();">POST YOUR AD HERE</button>
                 </div>
             </div>
         </div>
@@ -408,12 +240,10 @@
                 <div class="col-lg-8 col-12">
                     <div class="row">
 
-                        <!-- VIP -->
-
                         <div class="col-12">
 
-                            <div class="row border border-danger rounded  ad mt-4 blinking-shadow"
-                                onclick="ad_body(9);">
+                            <div class="row border border-danger rounded shadow ad mt-4 "
+                                style="background-color: #ff6bab;" onclick="bdg_body(9);">
                                 <div class="col-4 d-flex flex-column ">
                                     <img class="img-fluid d-none d-lg-block"
                                         src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.26.04_eb11da02.jpg"
@@ -421,219 +251,219 @@
                                     <img class="d-block d-lg-none"
                                         src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.26.04_eb11da02.jpg" alt=""
                                         style="width: 120px; height: 120px;">
+                                    <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                        </svg>
+                                        554 </span>
                                 </div>
                                 <div class="col-8">
                                     <h4 class="d-inline">💋💋 Beauti...</h4>
+                                    <h4>Shenu</h4>
+                                    <h4>+94764115548</h4>
+                                    <h4>Clicks : 1</h4>
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                        </div>
+                                        <div class="col-6">
+
+                                            <span class="badge rounded-pill text-secondary float-right mt-1"
+                                                style="font-size: 8px;">43 min ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border border-danger rounded shadow ad mt-4 " onclick="bdg_body(13);">
+                                <div class="col-4 d-flex flex-column ">
+                                    <img class="img-fluid d-none d-lg-block"
+                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.41.15_dd999926.jpg"
+                                        alt="">
+                                    <img class="d-block d-lg-none"
+                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.41.15_dd999926.jpg" alt=""
+                                        style="width: 120px; height: 120px;">
+                                    <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                        </svg>
+                                        459 </span>
+                                </div>
+                                <div class="col-8">
+                                    <h4 class="d-inline">Live cam ...</h4>
                                     <span class="badge rounded-pill text-white bg-danger float-right"
-                                        style="font-size: 16px;">
-                                        VIP ⭐ </span>
+                                        style="font-size: 16px;"> VIP ⭐ </span>
 
-                                    <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                        🍟💃Hi gentleman....t full service..private places very clean me,full safety
-                                        place.with
-                                        ng. 👉 😘 RAJAGIRIYA 💃💘👈
-                                        ❤I AM Shen.....
-                                    </p>
-                                    <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                        🍟💃Hi gentleman....t full service..private places very clean me,full .....
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                            <span class="badge rounded-pill text-white bg-success"
-                                                style="font-size: 8px;">CASH
-                                                DIPOSIT GUARANTEE</span>
-                                        </div>
-                                        <div class="col-6">
-
-                                            <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                style="font-size: 8px;">12 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <!-- BEST -->
-
-                        <div class="col-12">
-
-                            <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body(11);">
-                                <div class="col-4 d-flex flex-column ">
-                                    <img class="img-fluid d-none d-lg-block"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.36.56_7e1fd86b.jpg"
-                                        alt="">
-                                    <img class="d-block d-lg-none"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.36.56_7e1fd86b.jpg" alt=""
-                                        style="width: 120px; height: 120px;">
-                                    <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-        </svg>
-        12k
-    </span> -->
-                                </div>
-                                <div class="col-8">
-                                    <h4 class="d-inline">Live cam ...</h4>
-                                    <span class="badge rounded-pill text-white bg-warning float-right"
-                                        style="font-size: 16px;">BEST
-                                        AD</span>
-                                    <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                        Im Sakuni
-                                        💜22 years Old
-                                        💜Live cam model
-                                        🩷💯Real photo attached ✔
-
-                                        🔐Video Verification : 500/= 💰
-
-                                        ⛔This Service 21+.....
-                                    </p>
-                                    <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                        Im Sakuni
-                                        💜22 years Old
-                                        💜Live cam model
-                                        🩷💯Real photo attached ✔
-                                        .....
-                                    </p>
+                                    <h4>user</h4>
+                                    <h4>+9477898754</h4>
+                                    <h4>Clicks : 0</h4>
                                     <div class="row">
                                         <div class="col-6 ">
                                         </div>
                                         <div class="col-6">
 
                                             <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                style="font-size: 8px;">1
-                                                days ago</span>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body(10);">
-                                <div class="col-4 d-flex flex-column ">
-                                    <img class="img-fluid d-none d-lg-block"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.28.18_807ae991.jpg"
-                                        alt="">
-                                    <img class="d-block d-lg-none"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.28.18_807ae991.jpg" alt=""
-                                        style="width: 120px; height: 120px;">
-                                    <!-- <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-        </svg>
-        12k
-    </span> -->
-                                </div>
-                                <div class="col-8">
-                                    <h4 class="d-inline">Live cam ...</h4>
-                                    <span class="badge rounded-pill text-white bg-warning float-right"
-                                        style="font-size: 16px;">BEST
-                                        AD</span>
-                                    <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                        ❤I”m Parami 🙎
-                                        ❤29 years old
-                                        🤬No Meeting
-                                        ❤Video Verification Rs.200/= (එම මුදල සේවා ගාස්තුවෙන් අඩු කරනු ලැබේ)
-                                        ❤Orgina.....
-                                    </p>
-                                    <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                        ❤I”m Parami 🙎
-                                        ❤29 years old
-                                        🤬No Meeting
-                                        ❤Video Verification Rs.20.....
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                        </div>
-                                        <div class="col-6">
-
-                                            <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                style="font-size: 8px;">1
-                                                days ago</span>
-
-
+                                                style="font-size: 8px;">5 days ago</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <hr class="">
+
                         </div>
+                    </div>
 
 
-                        <div class="col-lg-8">
-                            <p class="text-primary">
-                                භාණ්ඩ සහ සේවා ලබා ගැනීමට පෙර හෝ ගනුදෙනුව තහවුරු වන තුරු මුදල් දීමෙන් වළකින්න. සියලුම
-                                ගෙවීම්
-                                පිලිබදව
-                                සැලකිලිමත් වන්න.
+                    <div class="col-12">
 
-                                Avoid giving money before receiving Products and services or until the transaction is
-                                confirmed.
-                                Be
-                                careful with all payments.
+                        <div class="row border border-warning rounded shadow ad mt-4 " onclick="bdg_body(11);">
+                            <div class="col-4 d-flex flex-column ">
+                                <img class="img-fluid d-none d-lg-block"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.36.56_7e1fd86b.jpg" alt="">
+                                <img class="d-block d-lg-none"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.36.56_7e1fd86b.jpg" alt=""
+                                    style="width: 120px; height: 120px;">
+                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                    </svg>
+                                    566 </span>
+                            </div>
+                            <div class="col-8">
+                                <h4 class="d-inline">Live cam ...</h4>
+                                <span class="badge rounded-pill text-white bg-warning float-right"
+                                    style="font-size: 16px;">BEST AD</span>
+                                <h4>user</h4>
+                                <h4>+9477898754</h4>
+                                <h4>Clicks : 0</h4>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                    </div>
+                                    <div class="col-6">
 
-                                full service දැන්වීම් සදහා හමුවීමට ප්‍රථම මුදල් ගෙවීමට තරම් මෝඩයෙකු නොවන්න.
-
-                                Don't be a fool to pay before meeting for full service ads.
-                            </p>
-                        </div>
-
-                        <!-- NORMAL -->
-
-                        <div class="col-12">
-
-                            <div class="row border border-primary rounded shadow ad mt-4 " onclick="ad_body(15);">
-                                <div class="col-4 d-flex flex-column ">
-                                    <img class="img-fluid d-none d-lg-block"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.43.37_f662a269.jpg"
-                                        alt="">
-                                    <img class="d-block d-lg-none"
-                                        src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.43.37_f662a269.jpg" alt=""
-                                        style="width: 120px; height: 120px;">
-                                </div>
-                                <div class="col-8">
-                                    <h4 class="d-inline">Live cam ...</h4>
-
-                                    <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                        Tharu: 💯 𝑴𝒚 𝑹𝒆𝒂𝒍 𝑷𝒉𝒐𝒕𝒐𝒔 𝒂𝒕𝒕𝒂𝒄𝒉𝒆𝒅 ✔
-                                        Hi Guys 👨🏻‍💼
-                                        ⚡ 𝐆𝐞𝐧𝐮𝐢𝐧𝐞 𝐜𝐚𝐦 𝐬𝐞𝐫𝐯𝐢𝐜𝐞 𐂂
-                                        𝗧𝗵𝗶𝘀 𝗶𝘀 𝗺𝘆 𝗿𝗲𝗮𝗹 𝗽𝗵𝗼𝘁𝗼𝘀 (💯𝗚𝗿𝗮𝗻𝘁𝗲𝗱 )
-                                        Dont take.....
-                                    </p>
-                                    <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                        Tharu: 💯 𝑴𝒚 𝑹𝒆𝒂𝒍 𝑷𝒉𝒐𝒕𝒐𝒔 𝒂𝒕𝒕𝒂𝒄𝒉𝒆𝒅 ✔
-                                        Hi Guys 👨🏻‍💼
-                                        ⚡ 𝐆𝐞𝐧𝐮𝐢𝐧𝐞 𝐜𝐚𝐦 𝐬𝐞𝐫𝐯.....
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-6 ">
-                                            <span class="badge rounded-pill text-white bg-success"
-                                                style="font-size: 8px;">CASH
-                                                DIPOSIT
-                                                GUARANTEE</span>
-                                        </div>
-                                        <div class="col-6">
-
-                                            <span class="badge rounded-pill text-secondary float-right mt-1"
-                                                style="font-size: 8px;">4
-                                                days ago</span>
-                                        </div>
+                                        <span class="badge rounded-pill text-secondary float-right mt-1"
+                                            style="font-size: 8px;">44 min ago</span>
                                     </div>
                                 </div>
                             </div>
-
-                            <hr class="">
-
                         </div>
+
+                        <div class="row border border-warning rounded shadow ad mt-4 " onclick="bdg_body(18);">
+                            <div class="col-4 d-flex flex-column ">
+                                <img class="img-fluid d-none d-lg-block"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.39.15_8c3660a6.jpg" alt="">
+                                <img class="d-block d-lg-none"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.39.15_8c3660a6.jpg" alt=""
+                                    style="width: 120px; height: 120px;">
+                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                    </svg>
+                                    443 </span>
+                            </div>
+                            <div class="col-8">
+                                <h4 class="d-inline">💓💓💰( 15.0...</h4>
+                                <span class="badge rounded-pill text-white bg-warning float-right"
+                                    style="font-size: 16px;">BEST AD</span>
+                                <h4>user</h4>
+                                <h4>+9477898754</h4>
+                                <h4>Clicks : 0</h4>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                    </div>
+                                    <div class="col-6">
+
+                                        <span class="badge rounded-pill text-secondary float-right mt-1"
+                                            style="font-size: 8px;">44 min ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row border border-primary rounded shadow ad mt-4 " onclick="bdg_body(10);">
+                            <div class="col-4 d-flex flex-column ">
+                                <img class="img-fluid d-none d-lg-block"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.28.18_807ae991.jpg" alt="">
+                                <img class="d-block d-lg-none"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.28.18_807ae991.jpg" alt=""
+                                    style="width: 120px; height: 120px;">
+                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                    </svg>
+                                    471 </span>
+                            </div>
+                            <div class="col-8">
+                                <h4 class="d-inline">Live cam ...</h4>
+
+                                <h4>user</h4>
+                                <h4>+9477898754</h4>
+                                <h4>Clicks : 1</h4>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                    </div>
+                                    <div class="col-6">
+
+                                        <span class="badge rounded-pill text-secondary float-right mt-1"
+                                            style="font-size: 8px;">2 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row border border-primary rounded shadow ad mt-4 " onclick="bdg_body(15);">
+                            <div class="col-4 d-flex flex-column ">
+                                <img class="img-fluid d-none d-lg-block"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.43.37_f662a269.jpg" alt="">
+                                <img class="d-block d-lg-none"
+                                    src="images/ad_photos/WhatsApp Image 2023-12-22 at 12.43.37_f662a269.jpg" alt=""
+                                    style="width: 120px; height: 120px;">
+                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                    </svg>
+                                    477 </span>
+                            </div>
+                            <div class="col-8">
+                                <h4 class="d-inline">Live cam ...</h4>
+
+                                <h4>user</h4>
+                                <h4>+9477898754</h4>
+                                <h4>Clicks : 0</h4>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <span class="badge rounded-pill text-white bg-success"
+                                            style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <span class="badge rounded-pill text-secondary float-right mt-1"
+                                            style="font-size: 8px;">5 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                     </div>
                 </div>
 
-
             </div>
+        </div>
+
+
+        </div>
         </div>
     </section>
 
@@ -708,56 +538,6 @@
             </div>
         </div>
     </footer>
-    <!-- Modal -->
-    <div class="modal fade" id="21warn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <h1 class="text-center text-danger mx-auto fs-5" id="staticBackdropLabel">Warning</h1>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <p>
-                                <p>
-                                    Do not sign in here unless you are under 18 years of age
-                                    We may post any of your advertisements on our website and we take no responsibility
-                                    for the advertisement you post.
-                                </p>
-                                <p>
-                                    මෙම වෙබ් අඩවියේ වැඩිහිටියන්ට පමණක් දර්ශන තිබිහ හැකි බැවින් ඔබ වයස 21 අඩු නම් මෙහි
-                                    ඇතුළු නොවන්න..
-                                    ඔබගේ ඕනෑම දැන්වීමක් අප වෙබ් අඩවියේ පළකල හැකි අතර ඔබ පළකරන දැන්වීමේ කිසිදු වගකීමක් අප
-                                    විසින් නොගන්න බව දන්වා සිටිමු. මෙය නිදහස් වෙබ් අඩවියකි.
-                                </p>
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info mx-auto" data-bs-dismiss="modal">Yes I'm Over 21</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Bootstrap JS and jQuery scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            if (!sessionStorage.getItem('modalShown')) {
-                $("#21warn").modal('show');
-                sessionStorage.setItem('modalShown', 'true');
-            }
-        });
-    </script>
-
-
 
     <!-- THEME JAVASCRIPT FILES
 ================================================== -->

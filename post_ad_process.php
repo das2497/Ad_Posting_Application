@@ -8,6 +8,8 @@ if (empty($_POST['ad_title'])) {
     echo "Please enter Mobile Number";
 } elseif (!preg_match('/^(0|\+94)[0-9]{9}$/', preg_replace('/[^0-9]/', '', $_POST['ad_mobile']))) {
     echo "Please enter Valid Mobile Number";
+} elseif ($_POST['ad_mobile_type'] == 'x') {
+    echo "Please enter Contact Type";
 } elseif (empty($_POST['ad_description'])) {
     echo "Please enter Description";
 } elseif ($_POST['ad_category'] == 'x') {
@@ -47,11 +49,39 @@ if (empty($_POST['ad_title'])) {
 
     $currentDateTime = date("Y-m-d H:i:s");
 
-    Database::iud("INSERT INTO ad_ad(ad_title,ad_descrip,ad_contact,ad_location,ad_img1,ad_img2,ad_img3,ad_img4,ad_categry,ad_user_ausr_id,ad_badge_adbg_id,ad_cashback,ad_stat,ad_time)
-    VALUES ('" . addslashes($_POST['ad_title']) . "','" . addslashes($_POST['ad_description']) . "','" . $_POST['ad_mobile'] . "','" . $_POST['ad_location'] . "','" . $img1 . "','" . $img2 . "','" . $img3 . "',
-    '" . $img4 . "','" . $_POST['ad_category'] . "','" . $_SESSION['usr']['ausr_id'] . "','2','0','0','" . $currentDateTime . "');");
-    echo "INSERT INTO ad_ad(ad_title,ad_descrip,ad_contact,ad_location,ad_img1,ad_img2,ad_img3,ad_img4,ad_categry,ad_user_ausr_id,ad_badge_adbg_id,ad_cashback,ad_stat,ad_time)
-    VALUES ('" . $_POST['ad_title'] . "','" . $_POST['ad_description'] . "','" . $_POST['ad_mobile'] . "','" . $_POST['ad_location'] . "','" . $img1 . "','" . $img2 . "','" . $img3 . "',
-    '" . $img4 . "','" . $_POST['ad_category'] . "','" . $_SESSION['usr']['ausr_id'] . "','2','0','0','" . $currentDateTime . "');";
-    
+    Database::iud("INSERT INTO ad_ad (
+        ad_title,
+        ad_descrip,
+        ad_contact,
+        ad_location,
+        ad_img1,
+        ad_img2,
+        ad_img3,
+        ad_img4,
+        ad_categry,
+        ad_user_ausr_id,
+        ad_badge_adbg_id,
+        ad_cashback,
+        ad_stat,
+        ad_time,
+        ad_contact_type
+    ) VALUES (
+        '" . addslashes($_POST['ad_title']) . "',
+        '" . addslashes($_POST['ad_description']) . "',
+        '" . $_POST['ad_mobile'] . "',
+        '" . $_POST['ad_location'] . "',
+        '" . $img1 . "',
+        '" . $img2 . "',
+        '" . $img3 . "',
+        '" . $img4 . "',
+        '" . $_POST['ad_category'] . "',
+        '" . $_SESSION['usr']['ausr_id'] . "',
+        '2',
+        '0',
+        '0',
+        '" . $currentDateTime . "',
+        '" . $_POST['ad_mobile_type'] . "'
+    );");
+
+    echo "success";
 }

@@ -167,6 +167,7 @@ function post_ad() {
     let ad_img_4 = document.getElementById('ad_img_4');
     let ad_title = document.getElementById('ad_title');
     let ad_mobile = document.getElementById('ad_mobile');
+    let ad_mobile_type = document.getElementById('ad_mobile_type');
     let ad_description = document.getElementById('ad_description');
     let ad_location = document.getElementById('ad_location');
     let ad_category = document.getElementById('ad_category');
@@ -222,6 +223,7 @@ function post_ad() {
     }
     f.append('ad_title', ad_title.value);
     f.append('ad_mobile', ad_mobile.value);
+    f.append('ad_mobile_type', ad_mobile_type.value);
     f.append('ad_description', ad_description.value);
     f.append('ad_location', ad_location.value);
     f.append('ad_category', ad_category.value);
@@ -236,6 +238,7 @@ function update_ad(ad_id) {
     let ad_img_4 = document.getElementById('ad_img_4');
     let ad_title = document.getElementById('ad_title');
     let ad_mobile = document.getElementById('ad_mobile');
+    let ad_mobile_type = document.getElementById('ad_mobile_type');
     let ad_description = document.getElementById('ad_description');
     let ad_location = document.getElementById('ad_location');
     let ad_category = document.getElementById('ad_category');
@@ -290,6 +293,7 @@ function update_ad(ad_id) {
     f.append('ad_id', ad_id);
     f.append('ad_title', ad_title.value);
     f.append('ad_mobile', ad_mobile.value);
+    f.append('ad_mobile_type', ad_mobile_type.value);
     f.append('ad_description', ad_description.value);
     f.append('ad_location', ad_location.value);
     f.append('ad_category', ad_category.value);
@@ -327,7 +331,7 @@ function rg_user() {
 
 function delete_ad(ad_id) {
 
-    var isConfirmed = window.confirm('Are you sure you want to proceed?');
+    var isConfirmed = window.confirm('Are you sure you want to Delete this Ad?');
     if (isConfirmed) {
         var r = new XMLHttpRequest();
         r.onreadystatechange = function () {
@@ -368,6 +372,57 @@ function user_republish(ad_id) {
     }
 }
 
+function admin_delete_user(usr_id) {
+    var isConfirmed1;
+    var isConfirmed2;
+
+    isConfirmed1 = window.confirm('Are you sure want to delete this user?');
+    if (isConfirmed1) {
+
+        var r = new XMLHttpRequest();
+        r.onreadystatechange = function () {
+            if (r.readyState == 4 && r.status == 200) {
+                console.log(r.responseText);
+                let t = r.responseText;
+
+                if (t == 'success') {
+                    alert(t);
+                    location.reload();
+                } else {
+                    isConfirmed2 = window.confirm(t);
+                    if (isConfirmed2) {
+                        admin_delete_user2(usr_id);
+                    }
+                }
+            }
+        }
+        var f = new FormData();
+        f.append('usr_id', usr_id);
+        r.open("POST", "admin_delete_user_process.php", true);
+        r.send(f);
+    }
+}
+
+
+function admin_delete_user2(usr_id) {
+
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            console.log(r.responseText);
+            let t = r.responseText;
+            alert(t);
+            if (t == 'success') {
+                location.reload();
+            }
+        }
+    }
+    var f = new FormData();
+    f.append('usr_id', usr_id);
+    f.append('yes', 'yes');
+    r.open("POST", "admin_delete_user_process.php", true);
+    r.send(f);
+}
 
 function do_like(ad_id) {
 

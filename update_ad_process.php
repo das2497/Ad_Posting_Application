@@ -8,25 +8,14 @@ if (empty($_POST['ad_title'])) {
     echo "Please enter Mobile Number";
 } elseif (!preg_match('/^(0|\+94)[0-9]{9}$/', preg_replace('/[^0-9]/', '', $_POST['ad_mobile']))) {
     echo "Please enter Valid Mobile Number";
+} elseif ($_POST['ad_mobile_type'] == 'x') {
+    echo "Please enter Contact Type";
 } elseif (empty($_POST['ad_description'])) {
     echo "Please enter Description";
 } elseif ($_POST['ad_category'] == 'x') {
     echo "Please Select Category";
 } else {
 
-
-    // echo $_POST['ad_id'];
-    // echo "<br/>";
-    // echo $_POST['ad_title'];
-    // echo "<br/>";
-    // echo $_POST['ad_mobile'];
-    // echo "<br/>";
-    // echo $_POST['ad_description'];
-    // echo "<br/>";
-    // echo $_POST['ad_location'];
-    // echo "<br/>";
-    // echo $_POST['ad_category'];
-    // echo "<br/>";
 
     $rs = Database::search("SELECT * FROM ad_ad WHERE ad_id='" . $_POST['ad_id'] . "';");
     $d = $rs->fetch_assoc();
@@ -62,8 +51,6 @@ if (empty($_POST['ad_title'])) {
         move_uploaded_file($_FILES['file4']['tmp_name'], $img4);
     }
 
-    // echo $img1 . ' ' . $img2 . ' ' . $img3 . ' ' . $img4;
-
     $currentDateTime = date("Y-m-d H:i:s");
 
     Database::search("UPDATE ad_ad
@@ -77,9 +64,11 @@ if (empty($_POST['ad_title'])) {
         ad_img3 = '" . $img3 . "',
         ad_img4 = '" . $img4 . "',
         ad_categry = '" . $_POST['ad_category'] . "',
-        ad_time = '" . $currentDateTime . "'
+        ad_time = '" . $currentDateTime . "',
+        ad_contact_type = '" . $_POST['ad_mobile_type'] . "'
     WHERE
         ad_id = '" . $_POST['ad_id'] . "';");
+
 
     echo "success";
 }

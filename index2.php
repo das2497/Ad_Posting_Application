@@ -3,6 +3,12 @@
 session_start();
 require 'connection.php';
 
+
+if (!isset($_GET['pg'])) {
+    $_GET['pg'] = 0;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -119,76 +125,95 @@ LIMIT 40 OFFSET 0;");
                             for ($x = 0; $x < $rs->num_rows; $x++) {
                                 $d = $rs->fetch_assoc();
 
+                                $currentDateTime = new DateTime();
+
+                                // Assuming $d['ad_time'] is a string representation of a datetime, convert it to a DateTime object
+                                $adTime = new DateTime($d['ad_time']);
+
+                                // Calculate the difference
+                                $timeDifference = $currentDateTime->diff($adTime);
+
+                                // Get the total number of hours
+                                $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+
+                                // Check if the difference is over 48 hours
+                                if ($totalHours > 24) {
+                                    // Update the ad_ad table if the difference is over 48 hours
+                                    Database::search("UPDATE ad_ad SET ad_badge_adbg_id='1' WHERE ad_id='" . $d['ad_id'] . "';");
+                                } else {
+
                             ?>
-                                <div class="carousel-item " style="background-color: #ff6bab;">
+                                    <div class="carousel-item " style="background-color: #ff6bab;">
 
-                                    <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                        <div class="row border border-danger rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
 
-                                        <div class="col-4 d-flex flex-column ">
-                                            <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
-                                            <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
-                                            <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                                </svg>
-                                                <?= $d['ad_like']; ?>
-                                            </span>
-                                        </div>
-                                        <div class="col-8">
-                                            <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 16, 'UTF-8'); ?>...</h4>
-                                            <p class="d-none d-lg-block text-white" style="word-wrap: break-word;">
-                                                <?php
-                                                echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
-                                                ?>.....
-                                            </p>
-                                            <p class="d-block d-lg-none text-white" style="word-wrap: break-word;">
-                                                <?php
-                                                echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
-                                                ?>.....
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-6 ">
+                                            <div class="col-4 d-flex flex-column ">
+                                                <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
+                                                <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
+                                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                                    </svg>
+
+                                                    <?= $d['ad_like']; ?>
+                                                </span>
+                                            </div>
+                                            <div class="col-8">
+                                                <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 16, 'UTF-8'); ?>...</h4>
+                                                <p class="d-none d-lg-block text-white" style="word-wrap: break-word;">
                                                     <?php
-                                                    if ($d['ad_cashback'] == 1) {
-                                                    ?>
-                                                        <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                    echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
+                                                    ?>.....
+                                                </p>
+                                                <p class="d-block d-lg-none text-white" style="word-wrap: break-word;">
                                                     <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                                <div class="col-6">
-                                                    <?php
-                                                    // Current date and time
-                                                    $currentDateTime = new DateTime();
+                                                    echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
+                                                    ?>.....
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-6 ">
+                                                        <?php
+                                                        if ($d['ad_cashback'] == 1) {
+                                                        ?>
+                                                            <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <?php
+                                                        // Current date and time
+                                                        $currentDateTime = new DateTime();
 
-                                                    // Calculate the difference
-                                                    $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
+                                                        // Calculate the difference
+                                                        $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
 
-                                                    // Get the total number of minutes and hours
-                                                    $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
-                                                    $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+                                                        // Get the total number of minutes and hours
+                                                        $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
+                                                        $totalHours = $timeDifference->h + ($timeDifference->days * 24);
 
-                                                    // Display the time difference
-                                                    if ($totalMinutes < 60) {
-                                                        $agoLabel = "{$totalMinutes} min ago";
-                                                    } elseif ($totalHours < 24) {
-                                                        $agoLabel = "{$totalHours} hours ago";
-                                                    } else {
-                                                        $totalDays = $timeDifference->days;
-                                                        $agoLabel = "{$totalDays} days ago";
-                                                    }
-                                                    ?>
+                                                        // Display the time difference
+                                                        if ($totalMinutes < 60) {
+                                                            $agoLabel = "{$totalMinutes} min ago";
+                                                        } elseif ($totalHours < 24) {
+                                                            $agoLabel = "{$totalHours} hours ago";
+                                                        } else {
+                                                            $totalDays = $timeDifference->days;
+                                                            $agoLabel = "{$totalDays} days ago";
+                                                        }
+                                                        ?>
 
-                                                    <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
+                                                        <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             <?php
-
+                                }
                             }
                             ?>
+
 
 
                         </div>
@@ -250,13 +275,15 @@ LIMIT 40 OFFSET 0;");
 
 
                                 <?php
+
                                 $q = "SELECT *
-                        FROM ad_ad
-                        INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
-                        INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
-                        INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
-                        WHERE ad_ad.ad_user_ausr_id='" . $_SESSION['usr']['ausr_id'] . "' 
-                        ORDER BY ad_time DESC;";
+                                    FROM ad_ad
+                                    INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+                                    INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+                                    INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+                                    WHERE ad_ad.ad_user_ausr_id='" . $_SESSION['usr']['ausr_id'] . "' 
+                                    ORDER BY ad_time DESC;";
+
                                 $rs = Database::search($q);
 
                                 if ($rs->num_rows == 0) {
@@ -297,6 +324,7 @@ LIMIT 40 OFFSET 0;");
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
                                                                     <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
                                                                 </svg>
+
                                                                 <?= $d['ad_like']; ?>
                                                             </span>
                                                         </div>
@@ -366,109 +394,32 @@ LIMIT 40 OFFSET 0;");
                                         <div class="col-12">
 
                                             <?php
-                                            $q = "SELECT *
-                                  FROM ad_ad
-                                  INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
-                                  INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
-                                  INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
-                                  WHERE ad_ad.ad_stat='1' AND ad_ad.ad_badge_adbg_id='3'
-                                  ORDER BY ad_time DESC
-                                  LIMIT 40 OFFSET 0;";
-                                            $rs = Database::search($q);
 
-                                            for ($x = 0; $x < $rs->num_rows; $x++) {
-                                                $d = $rs->fetch_assoc();
-
-                                            ?>
-
-                                                <div class="row border border-danger rounded  ad mt-4 blinking-shadow" onclick="ad_body(<?= $d['ad_id']; ?>);">
-                                                    <div class="col-4 d-flex flex-column ">
-                                                        <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
-                                                        <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
-                                                        <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                                                <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                                            </svg>
-                                                            <?= $d['ad_like']; ?>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
-                                                        <span class="badge rounded-pill text-white bg-danger float-right" style="font-size: 16px;"> VIP ⭐ </span>
-                                                        <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                                            <?php
-                                                            echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
-                                                            ?>.....
-                                                        </p>
-                                                        <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                                            <?php
-                                                            echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
-                                                            ?>.....
-                                                        </p>
-                                                        <div class="row">
-                                                            <div class="col-6 ">
-                                                                <?php
-                                                                if ($d['ad_cashback'] == 1) {
-                                                                ?>
-                                                                    <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <?php
-                                                                // Current date and time
-                                                                $currentDateTime = new DateTime();
-
-                                                                // Calculate the difference
-                                                                $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
-
-                                                                // Get the total number of minutes and hours
-                                                                $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
-                                                                $totalHours = $timeDifference->h + ($timeDifference->days * 24);
-
-                                                                // Display the time difference
-                                                                if ($totalMinutes < 60) {
-                                                                    $agoLabel = "{$totalMinutes} min ago";
-                                                                } elseif ($totalHours < 24) {
-                                                                    $agoLabel = "{$totalHours} hours ago";
-                                                                } else {
-                                                                    $totalDays = $timeDifference->days;
-                                                                    $agoLabel = "{$totalDays} days ago";
-                                                                }
-                                                                ?>
-
-                                                                <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php
-
+                                            if (isset($_GET['srch'])) {
+                                                $q = "SELECT *
+                                                FROM ad_ad
+                                                INNER JOIN ad_category ON ad_ad.ad_categry = ad_category.adct_id
+                                                INNER JOIN ad_user ON ad_ad.ad_user_ausr_id = ad_user.ausr_id
+                                                INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id = ad_badge.adbg_id
+                                                WHERE ad_ad.ad_stat = '1' AND ad_ad.ad_badge_adbg_id = '3' AND (ad_descrip LIKE '%" . $_GET['srch'] . "%' OR ad_location LIKE '%" . $_GET['srch'] . "%')
+                                                ORDER BY ad_time DESC
+                                                LIMIT 40 OFFSET 0;";
+                                            } else {
+                                                $q = "SELECT *
+                                                FROM ad_ad
+                                                INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+                                                INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+                                                INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+                                                WHERE ad_ad.ad_stat='1' AND ad_ad.ad_badge_adbg_id='3'
+                                                ORDER BY ad_time DESC
+                                                LIMIT 40 OFFSET 0;";
                                             }
-                                            ?>
-
-                                        </div>
 
 
-                                        <!-- BEST -->
+                                            $rsv = Database::search($q);
 
-                                        <div class="col-12">
-
-                                            <?php
-                                            $q = "SELECT *
-                                   FROM ad_ad
-                                   INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
-                                   INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
-                                   INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
-                                   WHERE ad_ad.ad_stat='1' AND ad_ad.ad_badge_adbg_id='2'
-                                   ORDER BY ad_time DESC
-                                   LIMIT 40 OFFSET 0;";
-
-                                            $rs = Database::search($q);
-
-                                            for ($x = 0; $x < $rs->num_rows; $x++) {
-                                                $d = $rs->fetch_assoc();
+                                            for ($x = 0; $x < $rsv->num_rows; $x++) {
+                                                $d = $rsv->fetch_assoc();
 
                                                 $currentDateTime = new DateTime();
 
@@ -482,13 +433,14 @@ LIMIT 40 OFFSET 0;");
                                                 $totalHours = $timeDifference->h + ($timeDifference->days * 24);
 
                                                 // Check if the difference is over 48 hours
-                                                if ($totalHours > 48) {
+                                                if ($totalHours > 24) {
                                                     // Update the ad_ad table if the difference is over 48 hours
                                                     Database::search("UPDATE ad_ad SET ad_badge_adbg_id='1' WHERE ad_id='" . $d['ad_id'] . "';");
                                                 } else {
+
                                             ?>
 
-                                                    <div class="row border border-warning rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                                    <div class="row border border-danger rounded  ad mt-4 blinking-shadow" style="background-color: #f09292;" onclick="ad_body(<?= $d['ad_id']; ?>);">
                                                         <div class="col-4 d-flex flex-column ">
                                                             <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
                                                             <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
@@ -496,6 +448,130 @@ LIMIT 40 OFFSET 0;");
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
                                                                     <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
                                                                 </svg>
+
+                                                                <?= $d['ad_like']; ?>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
+                                                            <span class="badge rounded-pill text-white bg-danger float-right" style="font-size: 16px;"> VIP ⭐ </span>
+                                                            <p class="d-none d-lg-block text-white" style="word-wrap: break-word;">
+                                                                <?php
+                                                                echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
+                                                                ?>.....
+                                                            </p>
+                                                            <p class="d-block d-lg-none text-white" style="word-wrap: break-word;">
+                                                                <?php
+                                                                echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
+                                                                ?>.....
+                                                            </p>
+                                                            <div class="row">
+                                                                <div class="col-6 ">
+                                                                    <?php
+                                                                    if ($d['ad_cashback'] == 1) {
+                                                                    ?>
+                                                                        <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <?php
+                                                                    // Current date and time
+                                                                    $currentDateTime = new DateTime();
+
+                                                                    // Calculate the difference
+                                                                    $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
+
+                                                                    // Get the total number of minutes and hours
+                                                                    $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
+                                                                    $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+
+                                                                    // Display the time difference
+                                                                    if ($totalMinutes < 60) {
+                                                                        $agoLabel = "{$totalMinutes} min ago";
+                                                                    } elseif ($totalHours < 24) {
+                                                                        $agoLabel = "{$totalHours} hours ago";
+                                                                    } else {
+                                                                        $totalDays = $timeDifference->days;
+                                                                        $agoLabel = "{$totalDays} days ago";
+                                                                    }
+                                                                    ?>
+
+                                                                    <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+
+                                        </div>
+
+
+                                        <!-- BEST -->
+
+                                        <div class="col-12">
+
+                                            <?php
+                                            if (isset($_GET['srch'])) {
+                                                $q = "SELECT *
+                                                FROM ad_ad
+                                                INNER JOIN ad_category ON ad_ad.ad_categry = ad_category.adct_id
+                                                INNER JOIN ad_user ON ad_ad.ad_user_ausr_id = ad_user.ausr_id
+                                                INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id = ad_badge.adbg_id
+                                                WHERE ad_ad.ad_stat = '1' AND ad_ad.ad_badge_adbg_id = '2' AND (ad_descrip LIKE '%" . $_GET['srch'] . "%' OR ad_location LIKE '%" . $_GET['srch'] . "%')
+                                                ORDER BY ad_time DESC
+                                                LIMIT 40 OFFSET " . 40 * $_GET['pg'] . ";";
+                                            } else {
+
+                                                $q = "SELECT *
+                                   FROM ad_ad
+                                   INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
+                                   INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
+                                   INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
+                                   WHERE ad_ad.ad_stat='1' AND ad_ad.ad_badge_adbg_id='2'
+                                   ORDER BY ad_time DESC
+                                   LIMIT 40 OFFSET " . 40 * $_GET['pg'] . ";";
+                                            }
+
+                                            $rsb = Database::search($q);
+
+                                            for ($x = 0; $x < $rsb->num_rows; $x++) {
+                                                $d = $rsb->fetch_assoc();
+
+                                                $currentDateTime = new DateTime();
+
+                                                // Assuming $d['ad_time'] is a string representation of a datetime, convert it to a DateTime object
+                                                $adTime = new DateTime($d['ad_time']);
+
+                                                // Calculate the difference
+                                                $timeDifference = $currentDateTime->diff($adTime);
+
+                                                // Get the total number of hours
+                                                $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+
+                                                // Check if the difference is over 48 hours
+                                                if ($totalHours > 24 && $d['ad_badge_adbg_id'] == 2) {
+
+                                                    Database::search("UPDATE ad_ad SET ad_badge_adbg_id='1' WHERE ad_id='" . $d['ad_id'] . "';");
+                                                } else   if ($totalHours > 24 && $d['ad_badge_adbg_id'] == 3) {
+
+                                                    Database::search("UPDATE ad_ad SET ad_badge_adbg_id='1' WHERE ad_id='" . $d['ad_id'] . "';");
+                                                } else {
+                                            ?>
+
+                                                    <div class="row border border-warning rounded shadow ad mt-4 " style="background-color: #ffe7a6;" onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                                        <div class="col-4 d-flex flex-column ">
+                                                            <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
+                                                            <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
+                                                            <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                                                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                                                </svg>
+
                                                                 <?= $d['ad_like']; ?>
                                                             </span>
                                                         </div>
@@ -552,127 +628,208 @@ LIMIT 40 OFFSET 0;");
                                                             </div>
                                                         </div>
                                                     </div>
-                                        </div>
-                                <?php
+                                            <?php
                                                 }
                                             }
-                                ?>
+                                            ?>
 
-                                <hr class="">
+                                            <hr class="">
 
-                                <div class="col-lg-8">
-                                    <p class="text-primary text-center">
-                                        භාණ්ඩ සහ සේවා ලබා ගැනීමට පෙර හෝ ගනුදෙනුව තහවුරු වන තුරු මුදල් දීමෙන් වළකින්න. සියලුම ගෙවීම් පිලිබදව සැලකිලිමත් වන්න.
+                                            <div class="col-12">
+                                                <p class="text-primary text-center">
+                                                    භාණ්ඩ සහ සේවා ලබා ගැනීමට පෙර හෝ ගනුදෙනුව තහවුරු වන තුරු මුදල් දීමෙන් වළකින්න. සියලුම ගෙවීම් පිලිබදව සැලකිලිමත් වන්න.
 
-                                        Avoid giving money before receiving Products and services or until the transaction is confirmed. Be careful with all payments.
+                                                    Avoid giving money before receiving Products and services or until the transaction is confirmed. Be careful with all payments.
 
-                                        full service දැන්වීම් සදහා හමුවීමට ප්‍රථම මුදල් ගෙවීමට තරම් මෝඩයෙකු නොවන්න.
+                                                    full service දැන්වීම් සදහා හමුවීමට ප්‍රථම මුදල් ගෙවීමට තරම් මෝඩයෙකු නොවන්න.
 
-                                        Don't be a fool to pay before meeting for full service ads.
-                                    </p>
-                                </div>
+                                                    Don't be a fool to pay before meeting for full service ads.
+                                                </p>
+                                            </div>
 
-                                <!-- NORMAL -->
+                                            <!-- NORMAL -->
 
-                                <div class="col-12">
+                                            <div class="col-12">
 
-                                    <?php
-                                    $q = "SELECT *
+                                                <?php
+                                                if (isset($_GET['srch'])) {
+                                                    $q =  $q = "SELECT *
+                                        FROM ad_ad
+                                        INNER JOIN ad_category ON ad_ad.ad_categry = ad_category.adct_id
+                                        INNER JOIN ad_user ON ad_ad.ad_user_ausr_id = ad_user.ausr_id
+                                        INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id = ad_badge.adbg_id
+                                        WHERE ad_ad.ad_stat = '1' AND ad_ad.ad_badge_adbg_id = '1' AND (ad_descrip LIKE '%" . $_GET['srch'] . "%' OR ad_location LIKE '%" . $_GET['srch'] . "%')
+                                        ORDER BY ad_time DESC
+                                        LIMIT 10 OFFSET " . 10 * $_GET['pg'] . ";";
+                                                } else {
+                                                    $q = "SELECT *
                         FROM ad_ad
                         INNER JOIN ad_category ON ad_ad.ad_categry=ad_category.adct_id
                         INNER JOIN ad_user ON ad_ad.ad_user_ausr_id=ad_user.ausr_id
                         INNER JOIN ad_badge ON ad_ad.ad_badge_adbg_id=ad_badge.adbg_id
                         WHERE ad_ad.ad_stat='1' AND ad_ad.ad_badge_adbg_id='1'
                         ORDER BY ad_time DESC
-                        LIMIT 10 OFFSET 0;";
-                                    $rs = Database::search($q);
+                        LIMIT 10 OFFSET " . 10 * $_GET['pg'] . ";";
+                                                }
+                                                $rsn = Database::search($q);
 
-                                    for ($x = 0; $x < $rs->num_rows; $x++) {
-                                        $d = $rs->fetch_assoc();
+                                                for ($x = 0; $x < $rsn->num_rows; $x++) {
+                                                    $d = $rsn->fetch_assoc();
 
 
-                                    ?>
-                                        <div class="row border border-primary rounded shadow ad mt-4 " onclick="ad_body(<?= $d['ad_id']; ?>);">
-                                            <div class="col-4 d-flex flex-column ">
-                                                <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
-                                                <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
-                                                <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
-                                                    </svg>
-                                                    <?= $d['ad_like']; ?>
-                                                </span>
-                                            </div>
-                                            <div class="col-8">
-                                                <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
-                                                <p class="d-none d-lg-block" style="word-wrap: break-word;">
-                                                    <?php
-                                                    echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
-                                                    ?>.....
-                                                </p>
-                                                <p class="d-block d-lg-none" style="word-wrap: break-word;">
-                                                    <?php
-                                                    echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
-                                                    ?>.....
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-6 ">
-                                                        <?php
-                                                        if ($d['ad_cashback'] == 1) {
-                                                        ?>
-                                                            <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
-                                                        <?php
-                                                        }
-                                                        ?>
+                                                ?>
+                                                    <div class="row border border-primary rounded shadow ad mt-4 " style="background-color: #a6deff;" onclick="ad_body(<?= $d['ad_id']; ?>);">
+                                                        <div class="col-4 d-flex flex-column ">
+                                                            <img class="img-fluid d-none d-lg-block" src="<?= $d['ad_img1'] ?>" alt="">
+                                                            <img class="d-block d-lg-none" src="<?= $d['ad_img1'] ?>" alt="" style="width: 120px; height: 120px;">
+                                                            <span class="badge rounded-pill text-primary px-4 py-1" style="font-size: 10px;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                                                                    <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+                                                                </svg>
+
+                                                                <?= $d['ad_like']; ?>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h4 class="d-inline"><?php echo mb_substr($d['ad_title'], 0, 9, 'UTF-8'); ?>...</h4>
+                                                            <p class="d-none d-lg-block" style="word-wrap: break-word;">
+                                                                <?php
+                                                                echo mb_substr($d['ad_descrip'], 0, 120, 'UTF-8');
+                                                                ?>.....
+                                                            </p>
+                                                            <p class="d-block d-lg-none" style="word-wrap: break-word;">
+                                                                <?php
+                                                                echo mb_substr($d['ad_descrip'], 0, 68, 'UTF-8');
+                                                                ?>.....
+                                                            </p>
+                                                            <div class="row">
+                                                                <div class="col-6 ">
+                                                                    <?php
+                                                                    if ($d['ad_cashback'] == 1) {
+                                                                    ?>
+                                                                        <span class="badge rounded-pill text-white bg-success" style="font-size: 8px;">CASH DIPOSIT GUARANTEE</span>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <?php
+                                                                    // Current date and time
+                                                                    $currentDateTime = new DateTime();
+
+                                                                    // Calculate the difference
+                                                                    $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
+
+                                                                    // Get the total number of minutes and hours
+                                                                    $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
+                                                                    $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+
+                                                                    // Display the time difference
+                                                                    if ($totalMinutes < 60) {
+                                                                        $agoLabel = "{$totalMinutes} min ago";
+                                                                    } elseif ($totalHours < 24) {
+                                                                        $agoLabel = "{$totalHours} hours ago";
+                                                                    } else {
+                                                                        $totalDays = $timeDifference->days;
+                                                                        $agoLabel = "{$totalDays} days ago";
+                                                                    }
+                                                                    ?>
+
+                                                                    <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <?php
-                                                        // Current date and time
-                                                        $currentDateTime = new DateTime();
+                                                <?php
 
-                                                        // Calculate the difference
-                                                        $timeDifference = $currentDateTime->diff(new DateTime($d['ad_time']));
+                                                }
+                                                ?>
 
-                                                        // Get the total number of minutes and hours
-                                                        $totalMinutes = $timeDifference->i + ($timeDifference->h * 60);
-                                                        $totalHours = $timeDifference->h + ($timeDifference->days * 24);
+                                                <hr class="">
 
-                                                        // Display the time difference
-                                                        if ($totalMinutes < 60) {
-                                                            $agoLabel = "{$totalMinutes} min ago";
-                                                        } elseif ($totalHours < 24) {
-                                                            $agoLabel = "{$totalHours} hours ago";
-                                                        } else {
-                                                            $totalDays = $timeDifference->days;
-                                                            $agoLabel = "{$totalDays} days ago";
-                                                        }
-                                                        ?>
-
-                                                        <span class="badge rounded-pill text-secondary float-right mt-1" style="font-size: 8px;"><?= $agoLabel; ?></span>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                    <?php
-
+                                        <?php
                                     }
-                                    ?>
+                                        ?>
 
-                                    <hr class="">
-
-                                </div>
+                                        </div>
                             </div>
                     </div>
-
-                <?php
-                                }
-                ?>
-
                 </div>
-            </div>
-        </div>
-        </div>
     </section>
+
+
+    <section>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php
+                if ($_GET['pg'] == 0) {
+                ?>
+                    <li class="page-item"><button class="page-link">Previous</button></li>
+                <?php
+                } else {
+                ?>
+                    <li class="page-item"><a class="page-link" href="?pg=<?= $_GET['pg'] - 1; ?>">Previous</a></li>
+                    <?php
+                }
+
+
+                for ($i = 0; $i < 2; $i++) {
+                    if ($i == $_GET['pg']) {
+                    ?>
+                        <li class="page-item"><a class="page-link bg-danger text-white" href="?pg=<?= $i; ?>"><?= $i + 1; ?></a></li>
+                    <?php
+                    } else {
+                    ?>
+                        <li class="page-item"><a class="page-link" href="?pg=<?= $i; ?>"><?= $i + 1; ?></a></li>
+                    <?php
+                    }
+                }
+
+                if ($_GET['pg'] == round($rs->num_rows / 10) - 1) {
+                    ?>
+                    <li class="page-item"><button class="page-link">Next</button></li>
+                <?php
+                } else {
+                ?>
+                    <li class="page-item"><a class="page-link" href="?pg=<?= $_GET['pg'] + 1; ?>">Next</a></li>
+                <?php
+                }
+
+                ?>
+            </ul>
+        </nav>
+    </section>
+
+    <?php
+    // Get the visitor's IP address
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+
+    // Get the country and city using a free IP geolocation API (e.g., freegeoip.app)
+    $geo_data = json_decode(file_get_contents("https://freegeoip.app/json/{$ip_address}"));
+
+    // Extract country and city from the API response
+    $country = $geo_data->country_name;
+    $city = $geo_data->city;
+
+    $rstr = Database::search("SELECT * FROM ad_tracking
+        WHERE adtr_ip='" . $ip_address . "';");
+
+    if (!isset($_SESSION['track']) || empty($_SESSION['track'])) {
+
+        if ($rstr->num_rows == 0) {
+            Database::iud("INSERT INTO ad_tracking(adtr_ip,adtr_country,adtr_city,adtr_visits) 
+            VALUES ('" . $ip_address . "','" . $country . "','" . $city . "','1');");
+        } else {
+            $dtr = $rstr->fetch_assoc();
+
+            Database::search("UPDATE ad_tracking SET adtr_visits='" . $dtr['adtr_visits'] + 1 . "' WHERE adtr_id='" . $dtr['adtr_id'] . "';");
+        }
+
+
+        $_SESSION['track'] = true;
+    }
+    ?>
 
 
     <?php require 'footer.php'; ?>

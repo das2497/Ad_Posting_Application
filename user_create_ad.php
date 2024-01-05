@@ -79,6 +79,19 @@
                                 <label for="ad_mobile">Your Mobile Number</label>
                                 <input type="text" id="ad_mobile" class="form-control" placeholder="Your Mobile Number">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ad_category">Contact Type</label>
+                            <select class="form-select" id="ad_mobile_type">
+                                <option value="x">Select</option>
+                                <option value="1">Call Whatsapp Teligram</option>
+                                <option value="2">Call Whatsapp</option>
+                                <option value="3">Call Teligram</option>
+                                <option value="4">Whatsapp Teligram</option>
+                                <option value="5">Call</option>
+                                <option value="6">Whatsapp</option>
+                                <option value="7">Teligram</option>
+                            </select>
                         </div>                        
                         <div class="col-md-12">
                             <div class="form-group">
@@ -91,10 +104,10 @@
                             <select class="form-select" id="ad_category">
                                 <option value="x">Select</option>
                                 <option value="1">Personal</option>
-                                <option value="1">Spa</option>
-                                <option value="1">Live Cam</option>
-                                <option value="1">Hotel</option>
-                                <option value="1">Other</option>
+                                <option value="2">Spa</option>
+                                <option value="3">Live Cam</option>
+                                <option value="4">Hotel</option>
+                                <option value="5">Other</option>
                             </select>
                         </div>
                         <div class="col-md-12">
